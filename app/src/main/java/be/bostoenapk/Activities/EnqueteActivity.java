@@ -34,7 +34,6 @@ import be.bostoenapk.R;
 
 public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
 
-
     private DataDBAdapter dataDBAdapter;
     private static final String PREFS_NAME = "COM.BOSTOEN.BE";
 
@@ -153,7 +152,8 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
 
                     break;
-                case 2: ArrayList<VragenDossier> vragenDossiers= dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
+                case 2: dataDBAdapter.open();
+                    ArrayList<VragenDossier> vragenDossiers= dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
                     if(vragenDossiers!=null)
                     {
                         for(VragenDossier vragenDossier : vragenDossiers)
@@ -161,6 +161,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
                             dataDBAdapter.deleteVragenDossier(vragenDossier);
                         }
                     }
+                    dataDBAdapter.close();
                     setLastDossier(null);
                     setOplossing(null);
                     setLastVraag(null);
