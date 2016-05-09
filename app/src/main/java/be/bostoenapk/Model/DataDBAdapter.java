@@ -718,6 +718,7 @@ public class DataDBAdapter {
 
 
 
+
     /**
      * Voegt de gewenste plaats toe aan de database
      * @param plaats

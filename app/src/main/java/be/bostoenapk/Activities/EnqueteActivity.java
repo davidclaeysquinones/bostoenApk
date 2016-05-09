@@ -1,6 +1,7 @@
 package be.bostoenapk.Activities;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,7 @@ import be.bostoenapk.R;
 
 public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
 
+
     private DataDBAdapter dataDBAdapter;
     private static final String PREFS_NAME = "COM.BOSTOEN.BE";
 
@@ -41,7 +43,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
     //Declaratie voor de DrawerLayout
 
-    private String[] mVragen = {"Home", "Historiek"}; //Namen van de gemaakte vragen in deze array
+    private String[] mVragen = {"Home", "Historiek","Annuleer"}; //Namen van de gemaakte vragen in deze array
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -151,13 +153,23 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
 
                     break;
-              /*  case 2: Intent i = new Intent(getApplicationContext(), InstellingenActivity.class);
-                       startActivity(i);
-                        mDrawerLayout.closeDrawers();
+                case 2: ArrayList<VragenDossier> vragenDossiers= dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
+                    if(vragenDossiers!=null)
+                    {
+                        for(VragenDossier vragenDossier : vragenDossiers)
+                        {
+                            dataDBAdapter.deleteVragenDossier(vragenDossier);
+                        }
+                    }
+                    setLastDossier(null);
+                    setOplossing(null);
+                    setLastVraag(null);
+                    setLastReeks(null);
 
+                    goToKeuzeFragment();
                     break;
 
-              */
+
 
             }
 
@@ -240,16 +252,21 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
     public void goToKeuzeFragment() {
         KeuzeFragment keuzeFragment = new KeuzeFragment();
         keuzeFragment.setEindFragment(true);
-        getFragmentManager().beginTransaction().replace(R.id.content_frame,keuzeFragment , "KeuzeFragment")
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.content_frame,keuzeFragment , "KeuzeFragment")
                 .addToBackStack("KeuzeFragment")
                 .commit();
+
     }
 
     @Override
     public void goToEindScherm() {
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, new EindFragment(), "EindFragment")
+        FragmentManager fm = getFragmentManager();
+
+        fm.beginTransaction().replace(R.id.content_frame, new EindFragment(), "EindFragment")
                 .addToBackStack("EindFragment")
                 .commit();
+
     }
 
 
@@ -509,4 +526,5 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         }
         else return null;
     }
+
 }
