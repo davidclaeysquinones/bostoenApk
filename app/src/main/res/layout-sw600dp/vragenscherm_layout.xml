@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TEMP VRAAG"
+            android:id="@+id/txtVraag"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/margin_40_dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/margin_40_dp"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:id="@+id/AntwoordenList"/>
+        </FrameLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:id="@+id/imageView"
+            android:background="#ffffff"
+            android:layout_marginBottom="50dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_marginLeft="5dp">
+
+        <ImageView
+            android:layout_width="51dp"
+            android:layout_height="58dp"
+            android:id="@+id/imgInfo"
+            android:src="@drawable/info" />
+
+        <TextView
+                android:layout_width="468dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TIP: PLACEHOLDER : dit is de tekst die een tip zal aangeven, dit gebruikt zoveel plaats als je hier nu ziet"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/txtTip"
+            android:layout_weight="0.08" />
+    </LinearLayout>
+
+</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volgende"
+            android:id="@+id/btnOK"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</ScrollView>

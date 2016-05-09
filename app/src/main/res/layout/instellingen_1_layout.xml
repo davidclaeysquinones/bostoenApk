@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView3" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/lblFirstNameInstellingen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"/>
+
+            <EditText
+                android:id="@+id/txtVoornaamAdviseur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp" />
+
+            <TextView
+                android:text="@string/lblNameInstellingen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/txtNaamAdviseur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"/>
+
+            <TextView
+                android:text="@string/lblEmailInstellingen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/txtEmailAdviseur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"/>
+
+            <Button
+                android:id="@+id/btnFragKlant"
+                android:text="@string/btnConfirmInstellingen1"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

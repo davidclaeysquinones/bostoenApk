@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false">
+
+
+
+
+        <CheckBox
+            android:text="@string/chkOwnerInstellingen2"
+            android:textSize="20dp"
+            android:id="@+id/klantIsEigenaar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#000000"
+            android:checked="false" />
+
+        <TextView
+            android:text="@string/lblNameInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtNaamKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:text="@string/lblFirstNameInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtVoornaamKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:text="@string/lblStreetInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtStraatKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:text="@string/lblTownInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtGemeenteKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:text="@string/lblNumberInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtNrKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:text="@string/lblZipCodeInstellingen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtPostcodeKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+        <Button
+            android:id="@+id/btnFragKeuze"
+            android:text="@string/btnConfirmInstellingen2"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>

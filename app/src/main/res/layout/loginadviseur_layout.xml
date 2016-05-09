@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="@string/lblFirstNameLoginadviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:id="@+id/txtVoornaamAdviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp" />
+
+    <TextView
+        android:text="@string/lblNameLoginadviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/txtNaamAdviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:text="@string/lblEmailLgoninadviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/txtEmailAdviseur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:id="@+id/btnFragKlant"
+        android:text="@string/btnNextLoginadviseur"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"/>
+
+</LinearLayout>

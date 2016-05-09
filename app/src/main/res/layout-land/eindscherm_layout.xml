@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnChangeEindscherm"
+            android:id="@+id/btnWijzigen"
+            android:layout_marginEnd="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/txtResultaat"
+            android:layout_gravity="right" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView2"
+            android:layout_weight="0.50">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="RESULTAAT: hier komt de resultaat tekst die via een mail zal verzonden worden."
+                android:id="@+id/txtResultaat"
+                android:layout_weight="0.57"
+                android:maxLines = "10000"
+
+                android:scrollbars = "vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/btnWijzigen"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="35dp" />
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtResultaat"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnChooseListEindscherm"
+                android:id="@+id/btnKiesReeks"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnSendEindscherm"
+                android:id="@+id/btnVerzenden"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

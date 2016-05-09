@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false">
+
+
+        <CheckBox
+            android:text="Eigenaar"
+            android:textSize="40sp"
+            android:id="@+id/klantIsEigenaar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:textColor="#000000"
+            android:checked="false" />
+
+        <TextView
+            android:text="Naam:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtNaamKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:text="Voornaam:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtVoornaamKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:text="Straat:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtStraatKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:text="Nr:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtNrKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:text="Gemeente:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtGemeenteKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:text="Postcode:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/txtPostcodeKlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+        <Button
+            android:id="@+id/btnFragKeuze"
+            android:text="Bevestig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp" />
+    </LinearLayout>
+</ScrollView>
