@@ -30,6 +30,13 @@
         android:id="@+id/btnSettings"
         android:layout_gravity="center"
         android:layout_marginBottom="100dp"/>
+
+    <Button
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:id="@+id/plaatsButton"
+        android:text="@string/plaats_historiek"
+        android:layout_marginBottom="100dp"/>/>
     <Button
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"

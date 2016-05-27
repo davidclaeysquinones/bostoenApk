@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import be.bostoenapk.Fragments.EindFragment;
 import be.bostoenapk.Fragments.HistoriekFragment;
 import be.bostoenapk.Fragments.KeuzeFragment;
+import be.bostoenapk.Fragments.PlaatsHistoriekFragment;
 import be.bostoenapk.Fragments.VragenFragment;
 import be.bostoenapk.Model.AntwoordOptie;
 import be.bostoenapk.Model.DataDBAdapter;
@@ -36,7 +37,7 @@ import be.bostoenapk.Model.VragenDossier;
 import be.bostoenapk.R;
 
 
-public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
+public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener,PlaatsHistoriekFragment.OnFragmentInteractionListener{
 
     private DataDBAdapter dataDBAdapter;
     private static final String PREFS_NAME = "COM.BOSTOEN.BE";
@@ -70,10 +71,31 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
             //Als alle enquetes zijn ingevuld naar eindscherm
             if(getIntent().getStringExtra("last_fragment")!=null)
             {
-                getFragmentManager().beginTransaction().add(R.id.content_frame, new EindFragment(), "EindFragment")
-                        .commit();
-                previousInstellingen=true;
-                Log.d("Previous","instellingen");
+                String last = getIntent().getStringExtra("last_fragment");
+
+                switch (last)
+                {
+                   /** case "instellingen" : getFragmentManager().beginTransaction().add(R.id.content_frame, new EindFragment(), "EindFragment")
+                            .commit();
+                        previousInstellingen=true;
+                        Log.d("Previous", "instellingen");
+                        break;*/
+                    case "home" :getFragmentManager().beginTransaction().add(R.id.content_frame, new PlaatsHistoriekFragment(), "PlaatsHistoriekFragment")
+                            .commit();
+                        Log.d("Previous","home");
+                        break;
+                    case "eind" : getFragmentManager().beginTransaction().add(R.id.content_frame, new EindFragment(), "EindFragment")
+                            .commit();
+                        Log.d("Previous", "eind");
+                            break;
+                    case "keuze" : getFragmentManager().beginTransaction().add(R.id.content_frame, new KeuzeFragment(), "EindFragment")
+                                    .commit();
+                                    Log.d("Previous", "keuze");
+                                    break;
+
+                    default: Log.d("enqueteactivity","error last_fragment");
+                }
+
             } else {
                 Log.d("Previous","null");
                 //als een vraag reeds ingevuld is
@@ -151,7 +173,10 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
         public void onItemClick(AdapterView parent, View view, int position, long id) {
 
             switch (position){
-                case 0: Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                case 0:
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    String last = getIntent().getStringExtra("last_fragment");
+                    intent.putExtra("last_fragment",last);
                     startActivity(intent);
                     mDrawerLayout.closeDrawer(GravityCompat.START);
 
@@ -258,10 +283,19 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
 
 
     @Override
+    public ArrayList<Plaats> getPlaatsen() {
+        dataDBAdapter.open();
+        ArrayList<Plaats> plaatsen = dataDBAdapter.getPlaatsenFromCursor(dataDBAdapter.getPlaatsen());
+        dataDBAdapter.close();
+        return plaatsen;
+    }
+
+    @Override
     public void goToKeuzeFragment() {
         KeuzeFragment keuzeFragment = new KeuzeFragment();
         keuzeFragment.setEindFragment(true);
         FragmentManager fm = getFragmentManager();
+        getIntent().putExtra("last_fragment","keuze");
         fm.beginTransaction().replace(R.id.content_frame,keuzeFragment , "KeuzeFragment")
                 .addToBackStack("KeuzeFragment")
                 .commit();
@@ -269,9 +303,16 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
     }
 
     @Override
+    public void deletePlaats(Plaats plaats) {
+        dataDBAdapter.open();
+        dataDBAdapter.deletePlaats(plaats);
+        dataDBAdapter.close();
+    }
+
+    @Override
     public void goToEindScherm() {
         FragmentManager fm = getFragmentManager();
-
+        getIntent().putExtra("last_fragment","eind");
         fm.beginTransaction().replace(R.id.content_frame, new EindFragment(), "EindFragment")
                 .addToBackStack("EindFragment")
                 .commit();
@@ -281,7 +322,7 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
 
     public void goToInstellingen(Integer lastDossier){
         Intent intent = new Intent(getApplicationContext(), InstellingenActivity.class);
-        intent.putExtra("last_fragment","eind");
+        intent.putExtra("last_fragment", "keuze");
         intent.putExtra("last_dossier", lastDossier);
         startActivity(intent);
     }
@@ -522,6 +563,12 @@ public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.
         }
         editor.commit();
 
+    }
+
+    @Override
+    public void goToHomeFragment() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override

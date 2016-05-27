@@ -1,6 +1,17 @@
 package be.bostoenapk.Model;
 
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import be.bostoenapk.R;
+
 public class Plaats {
     private Integer id;
     private String straat;
@@ -93,5 +104,62 @@ public class Plaats {
 
     public void setIsEigenaar(boolean isEigenaar) {
         this.isEigenaar = isEigenaar;
+    }
+
+    public static class PlaatsAdapter extends BaseAdapter {
+        Context mContext;
+        ArrayList<Plaats> plaatsen;
+        LayoutInflater mInflater;
+
+
+        public PlaatsAdapter(Context c,ArrayList<Plaats> plaatsen)
+        {
+            mContext=c;
+            this.plaatsen=plaatsen;
+            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+
+        @Override
+        public int getCount() {
+            return plaatsen.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return plaatsen.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = mInflater.inflate(R.layout.plaats_view_item, null);
+            TextView klant = (TextView) view.findViewById(R.id.klantPlaats);
+            TextView adres = (TextView) view.findViewById(R.id.adresPlaats);
+
+            Plaats huidig = plaatsen.get(position);
+
+            StringBuilder klantnaam = new StringBuilder();
+            klantnaam.append(huidig.getVoornaam()).append(" ").append(huidig.getNaam());
+
+            StringBuilder klantplaats = new StringBuilder();
+            klantplaats.append(huidig.getStraat()).append(" ").append(huidig.getNummer()).append("\n");
+            klantplaats.append(huidig.getPostcode()).append(" ").append(huidig.getGemeente());
+
+            klant.setText(klantnaam.toString());
+            adres.setText(klantplaats.toString());
+
+
+            return view;
+        }
+
+
+
+
+
     }
 }

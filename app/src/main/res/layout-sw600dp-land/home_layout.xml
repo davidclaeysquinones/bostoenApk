@@ -41,7 +41,13 @@
             android:text="@string/btnSettingsHome"
             android:id="@+id/btnSettings"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+           />
+        <Button
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/plaatsButton"
+            android:text="@string/plaats_historiek"
+            android:layout_marginLeft="30dp" />
         <Button
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"

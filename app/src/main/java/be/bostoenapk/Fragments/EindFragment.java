@@ -31,6 +31,7 @@ public class EindFragment extends Fragment {
     private ImageView wijziging;
     private Button verzending;
     private Button kiesReeks;
+    private Button afronden;
     private TextView txtControleNaam;
     private TextView txtControleEmail;
     private final String PREFS_NAME = "COM.BOSTOEN.BE";
@@ -48,6 +49,7 @@ public class EindFragment extends Fragment {
         //elementen van scherm in code ophalen
         oplossing = (TextView) view.findViewById(R.id.txtResultaat);
         wijziging = (ImageView) view.findViewById(R.id.btnWijzigen);
+        afronden = (Button) view.findViewById(R.id.btnafronden);
         verzending = (Button) view.findViewById(R.id.btnVerzenden);
         kiesReeks = (Button) view.findViewById(R.id.btnKiesReeks);
         txtControleNaam = (TextView) view.findViewById(R.id.txtControleNaam);
@@ -56,7 +58,7 @@ public class EindFragment extends Fragment {
         txtControleNaam.setText("Naam: " + mListener.getNaam() );
         txtControleEmail.setText("Email: " + mListener.getEmail());
         //laats beantwoorde vraag resetten
-        mListener.setLastVraag(null);
+       mListener.setLastVraag(null);
 
         //stringbuilder om later oplossingtekst van huidig dossier op te halen
         final StringBuilder tekst = new StringBuilder();
@@ -135,6 +137,7 @@ public class EindFragment extends Fragment {
         verzending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //oplossing van laatste dossier toevoegen aan bestaande oplossingen
 
                 //controleren of het laatste dossier oplossingen heeft
@@ -149,8 +152,9 @@ public class EindFragment extends Fragment {
                     //elementen op null zetten om later nieuwe reeksen te kunnen invullen
                     mListener.setLastDossier(null);
                     mListener.setLastReeks(null);
-                    mListener.setLastPlaats(null);
                     mListener.setOplossing(null);
+                    mListener.deletePlaats(mListener.getPlaats(mListener.getLastPlaats()));
+                    mListener.setLastPlaats(null);
 
                 }
                 else {
@@ -160,10 +164,22 @@ public class EindFragment extends Fragment {
             }
         });
 
+        afronden.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.setLastDossier(null);
+                mListener.setLastReeks(null);
+                mListener.setOplossing(null);
+                mListener.setLastPlaats(null);
+                mListener.goToHomeFragment();
+            }
+        });
+
         //navigeren naar nieuwe reeks
         kiesReeks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //controleren of het laatste dossier oplossingen heeft
                 if(!tekst.toString().equals("") && tekst.toString()!=null)
                 {
@@ -335,7 +351,9 @@ public class EindFragment extends Fragment {
         ArrayList<AntwoordOptie> getAntwoorden(int vraagid);
         void goToInstellingen(Integer lastDossier);
         void goToKeuzeFragment();
+        void deletePlaats(Plaats plaats);
         void setOplossing ( String oplossing);
+        void goToHomeFragment();
         ArrayList<Dossier> getDossiersPlaats(int plaatsid);
         Dossier getDossier(int id);
         String getOplossing();

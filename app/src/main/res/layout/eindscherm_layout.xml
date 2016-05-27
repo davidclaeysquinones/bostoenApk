@@ -88,6 +88,11 @@
                     android:id="@+id/btnKiesReeks"/>
 
                 <Button
+                    android:layout_width="250dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/btnafronden"
+                    android:text="@string/btnAfronden"/>
+                <Button
                     android:layout_width="@dimen/button_width_long"
                     android:layout_height="@dimen/button_height"
                     android:text="@string/btnSendEindscherm"

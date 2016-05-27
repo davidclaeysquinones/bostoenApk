@@ -3,9 +3,12 @@ package be.bostoenapk.Services;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import org.apache.http.NameValuePair;
@@ -193,6 +196,11 @@ public class Service {
                         if(current.optString("afbeelding")==null ||current.optString("afbeelding").equals("null"))
                         {
                             vraag.setImage(null);
+                        }
+                        else {
+                            byte[] decodedString = Base64.decode(current.optString("afbeelding"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            vraag.setImage(decodedByte);
                         }
                         vraag.setLast_update(new CustomDate(current.optString("last_update").replace(" ","-")));
                         vraag.setReeks_id(reeksid);

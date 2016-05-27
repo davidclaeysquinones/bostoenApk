@@ -83,6 +83,11 @@
                 android:id="@+id/btnKiesReeks"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"/>
+            <Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height_extended"
+                android:id="@+id/btnafronden"
+                android:text="@string/btnAfronden"/>
 
             <Button
                 android:layout_width="@dimen/button_width"

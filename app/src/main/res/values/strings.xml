@@ -49,6 +49,7 @@
     <string name="btnOkVragenscherm">OK</string>
     <string name="btnTerug">Terug</string>
     <string name="btnKiesReeks">Kies Reeks</string>
+    <string name="btnAfronden">afronden</string>
     <string name="PREFS_NAME">COM.BOSTOEN.BE</string>
     <string name="txtTitle">Project RenBEN</string>
     <string name="txtThanksTO">Met dank aan:</string>
@@ -60,7 +61,12 @@ Het doel van het project is om via een geïntegreerde aanpak tools te ontwerpen 
 Voor deze 30 renovaties binnen het project RenBEN geven we extra ondersteuning en begeleiding om duurzame renovatiemaatregelen naar BEN te promoten.
 De app Ren2BEN helpt u om een oplossing te zoeken voor een welbepaald onderdeel van de te behandelen bestaande woning om deze woning uiteindelijk te renoveren naar BEN. Zo kan u op basis van deze resultaten een gepast technisch en energetisch advies te geven aan de eigenaar of huurder van de woning.
 </string>
+    <string name="plaats_historiek">Recente plaatsen :</string>
+    <string name="plaats_historiek_empty">Er zijn geen recente plaatsen</string>
     <string name="historiek">Historiek</string>
     <string name="historiek_waarschuwing">Door een item aan te klikken word de enquête tot deze vraag teruggedraaid en zal u vanaf dit punt herbeginnen.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

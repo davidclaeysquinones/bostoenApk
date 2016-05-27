@@ -18,6 +18,7 @@ import be.bostoenapk.Fragments.AboutFragment;
 import be.bostoenapk.Fragments.HomeFragment;
 import be.bostoenapk.Fragments.LoginAdviseurFragment;
 import be.bostoenapk.Fragments.LoginKlantFragment;
+import be.bostoenapk.Fragments.PlaatsHistoriekFragment;
 import be.bostoenapk.Model.AntwoordOptie;
 import be.bostoenapk.Model.DataDBAdapter;
 import be.bostoenapk.Model.Plaats;
@@ -28,7 +29,7 @@ import be.bostoenapk.Services.Service;
 import be.bostoenapk.Utilities.CustomDate;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginAdviseurFragment.OnFragmentInteractionListener,LoginKlantFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener{
+public class LoginActivity extends AppCompatActivity implements LoginAdviseurFragment.OnFragmentInteractionListener,LoginKlantFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener,PlaatsHistoriekFragment.OnFragmentInteractionListener{
 
     private final String PREFS_NAME = "COM.BOSTOEN.BE";
     private SharedPreferences sharedpreferences;
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
 
         dataDBAdapter = new DataDBAdapter(getApplicationContext());
 
-     /*   if(getLastVraag()==null && getLastPlaats()==null)
+        /**if(getLastVraag()==null && getLastPlaats()==null)
         {
             if(getLastUpdate()==null)
              {
@@ -78,10 +79,9 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
         }
         else {
             Log.d("Login","bezig met enquete");
-        }
-*/
-        //sync();
-        Log.d("oncreate","end");
+        }*/
+
+        Log.d("oncreate", "end");
         addSampleData();
 
 
@@ -100,9 +100,18 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
 
     @Override
     public void goToKlantFragment() {
-        getFragmentManager().beginTransaction().replace(R.id.container, new LoginKlantFragment(), "KlantFragment")
-                .addToBackStack("KlantFragment")
-                .commit();
+        if(getIntent().getStringExtra("last_fragment")==null)
+        {
+            getFragmentManager().beginTransaction().replace(R.id.container, new LoginKlantFragment(), "KlantFragment")
+                    .addToBackStack("KlantFragment")
+                    .commit();
+        }
+        else {
+            Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
+            intent.putExtra("last_fragment", getIntent().getStringExtra("last_fragment"));
+            startActivity(intent);
+        }
+
     }
 
 
@@ -122,6 +131,14 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
     }
 
     @Override
+    public ArrayList<Plaats> getPlaatsen() {
+        dataDBAdapter.open();
+        ArrayList<Plaats> plaatsen = dataDBAdapter.getPlaatsenFromCursor(dataDBAdapter.getPlaatsen());
+        dataDBAdapter.close();
+        return plaatsen;
+    }
+
+    @Override
     public void goToKeuzeFragment() {
         goEnqueteActivity();
     }
@@ -131,6 +148,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
 
     protected void goEnqueteActivity(){
         Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
+        intent.putExtra("last_fragment", "keuze");
         startActivity(intent);
     }
 
@@ -318,6 +336,16 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
         Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
         intent.putExtra("lastVraag",id);
         startActivity(intent);
+    }
+
+    @Override
+    public void goToPlaatsHistoriek() {
+        /**Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
+        intent.putExtra("last_fragment","home");
+        startActivity(intent);*/
+        getFragmentManager().beginTransaction().replace(R.id.container, new PlaatsHistoriekFragment(), "PLaatsHistoriekFragment")
+                .addToBackStack("PlaatsHistoriekFragment")
+                .commit();
     }
 
     public void addSampleData()  {

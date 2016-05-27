@@ -3,6 +3,7 @@ package be.bostoenapk.Fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class HomeFragment extends Fragment {
     private Button startEnquete;
     private Button settings;
     private Button about;
+    private Button plaatsen;
     private TextView welkom;
 
     @Override
@@ -26,6 +28,7 @@ public class HomeFragment extends Fragment {
         view =  inflater.inflate(R.layout.home_layout, container, false);
         startEnquete =(Button)view.findViewById(R.id.btnStart);
         settings = (Button) view.findViewById(R.id.btnSettings);
+        plaatsen = (Button) view.findViewById(R.id.plaatsButton);
         about = (Button) view.findViewById(R.id.btnAbout);
         welkom = (TextView) view.findViewById(R.id.txtWelkom);
 
@@ -34,15 +37,11 @@ public class HomeFragment extends Fragment {
         startEnquete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mListener.getLastVraag()==null)
-                {
+                if (mListener.getLastVraag() == null) {
                     mListener.goToKlantFragment();
-                }
-                else {
+                } else {
                     mListener.goToVraag(mListener.getLastVraag());
                 }
-
-
 
 
             }
@@ -54,6 +53,14 @@ public class HomeFragment extends Fragment {
 
                 mListener.goToInstellingen();
 
+            }
+        });
+
+        plaatsen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.goToPlaatsHistoriek();
+                Log.d("homefragment","plaatsen");
             }
         });
 
@@ -101,6 +108,7 @@ public class HomeFragment extends Fragment {
         String getVoornaam();
         Integer getLastVraag();
         void goToVraag(int id);
+        void goToPlaatsHistoriek();
 
 
     }
