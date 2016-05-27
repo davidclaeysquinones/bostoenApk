@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/footer"
+            android:contentDescription="footer_image"
+            android:scaleType="fitXY"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -10,15 +20,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="82dp"
+            android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/lblWelcomeHome"
             android:id="@+id/txtWelkom"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textSize="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:textSize="30sp"
             android:layout_gravity="center_horizontal" />
 
         <LinearLayout
@@ -27,31 +35,25 @@
             android:layout_height="match_parent">
 
             <Button
-                android:layout_width="206dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
                 android:text="@string/btnStartHome"
                 android:id="@+id/btnStart"
                 android:layout_marginBottom="50dp"
-                android:layout_below="@+id/txtWelkom"
-                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_width="201dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
                 android:text="@string/btnSettingsHome"
                 android:id="@+id/btnSettings"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/btnStart"
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_width="201dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
                 android:text="@string/btnAboutHome"
                 android:id="@+id/btnAbout"
-                android:layout_below="@+id/btnSettings"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="54dp"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>

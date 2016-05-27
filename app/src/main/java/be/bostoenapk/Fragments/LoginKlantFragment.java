@@ -13,11 +13,13 @@ import android.widget.EditText;
 
 import be.bostoenapk.Model.Plaats;
 import be.bostoenapk.R;
+import be.bostoenapk.Utilities.Validatie;
 
 public class LoginKlantFragment extends Fragment {
     private View view;
     private OnFragmentInteractionListener mListener;
     private final String TAG = LoginKlantFragment.class.getSimpleName();
+    private Validatie val;
 
     EditText naam;
     EditText voornaam;
@@ -43,7 +45,7 @@ public class LoginKlantFragment extends Fragment {
         gemeente = (EditText)view.findViewById(R.id.txtGemeenteKlant);
         nummer = (EditText)view.findViewById(R.id.txtNrKlant);
         postcode = (EditText)view.findViewById(R.id.txtPostcodeKlant);
-
+        val = new Validatie();
         //kijken of er tijdens de uitvoering van de app al een plaats werd toegevoegd
         if(mListener.getLastPlaats()!=null)
         {
@@ -100,75 +102,38 @@ public class LoginKlantFragment extends Fragment {
     }
 
     public boolean controleerVelden() {
-        boolean valid = true;
-
-
-        if(!isValidText(50, naam.getText().toString())) {
+        if(!val.valString(naam.getText().toString(), 51, -1)) {
             naam.setError("Gelieve een correcte naam in te geven (max. 50 karakters)");
-            valid = false;
-        } else {
-            naam.setError(null);
-            valid = valid ==true;
-        }
-        if (!isValidText(50, voornaam.getText().toString())) {
-            voornaam.setError("Gelieve een correcte voornaam in te geven (max. 50 karakters)");
-            valid = false;
-        } else {
-            voornaam.setError(null);
-            valid = valid ==true;
-        }
-
-        if (!isValidText(100, straat.getText().toString())) {
-            straat.setError("Gelieve een correcte straat in te geven (max. 100 karakters)");
-            valid = false;
-        } else {
-            straat.setError(null);
-            valid = valid ==true;
-        }
-
-        if (!isValidText(50, gemeente.getText().toString())) {
-            gemeente.setError("Gelieve een correcte gemeente in te geven (max. 50 karakters)");
             return false;
         } else {
-            gemeente.setError(null);
-            valid = valid == true;
+            naam.setError(null);
         }
+        if (!val.valString(voornaam.getText().toString(), 51, -1)) {
+            voornaam.setError("Gelieve een correcte voornaam in te geven (max. 50 karakters)");
+            return false;
+        } else voornaam.setError(null);
 
+        if (!val.valString(straat.getText().toString(), 101, -1)) {
+            straat.setError("Gelieve een correcte straat in te geven (max. 100 karakters)");
+            return false;
+        } else straat.setError(null);
 
-        if (nummer.getText().toString().equals("") ||
-                nummer.getText().toString().equals(null) ||
-                nummer.getText().toString().length() > 5 ||
-                !isNummer(nummer.getText().toString())) {
-            nummer.setError("Gelieve een correct nummer in te geven (max. 4 cijfers en/of letters)");
+        if (!val.valString(gemeente.getText().toString(), 51, -1)) {
+            gemeente.setError("Gelieve een correcte gemeente in te geven (max. 50 karakters)");
+            return false;
+        } else gemeente.setError(null);
+
+        if (!val.valNumber(nummer.getText().toString(), 5, -1)) {
+            nummer.setError("Gelieve een correct nummer (enkel cijfers) in te geven (max. 4 karkters)");
             return false;
         } else nummer.setError(null);
 
-
-        if (!isValidText(5, postcode.getText().toString()) ||
-                !isNummer(postcode.getText().toString())) {
-            postcode.setError("Gelieve een correcte postcode in te geven (max. 4 cijfers)");
-            valid = false;
-        } else {
-            postcode.setError(null);
-            valid = valid ==true;
-        }
-
-        return valid;
-    }
-
-    protected boolean isNummer(String nummer) {
-        try {
-            Integer.parseInt(nummer);
-            return true;
-        } catch (NumberFormatException e) {
+        if (!val.valNumberExactLength(postcode.getText().toString(), 4)) {
+            postcode.setError("Gelieve een correcte postcode in te geven (exact 4 cijfers)");
             return false;
-        }
-    }
+        } else postcode.setError(null);
 
-    protected boolean isValidText(int maxLength, String woord) {
-        if(woord==null || woord.equals("") || woord.length() > maxLength ) {
-            return false;
-        } else return true;
+        return true;
     }
 
     @Override

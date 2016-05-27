@@ -14,6 +14,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:id="@+id/reeksLijst"/>
 
     </LinearLayout>
@@ -27,14 +28,14 @@
             android:text="Geef identificatienaam aan reeks:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/txtIdentificatieKeuze"
-            android:layout_width="277dp"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
+            android:hint="bv. linker badkamermuur"
             android:layout_gravity="center_vertical"
             android:layout_margin="15dp"/>
 
@@ -42,10 +43,9 @@
             android:id="@+id/btnFragVragen"
             android:text="Volgende"
             android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_margin="20dp"/>
     </LinearLayout>
-
 </LinearLayout>

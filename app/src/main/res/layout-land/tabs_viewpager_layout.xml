@@ -6,10 +6,11 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gereed"
+        android:layout_height="@dimen/button_height"
+        android:text="@string/btnTerug"
+        android:background="@color/primary_button_dark"
         android:id="@+id/btnGereed1"
-        android:layout_gravity="center_horizontal" />
+        android:gravity="center" />
 
     <TabHost
         android:id="@android:id/tabhost"

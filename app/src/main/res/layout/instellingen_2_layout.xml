@@ -4,16 +4,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false">
-
-
-
-
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <CheckBox
             android:text="@string/chkOwnerInstellingen2"
-            android:textSize="20dp"
             android:id="@+id/klantIsEigenaar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,100 +18,93 @@
 
         <TextView
             android:text="@string/lblNameInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtNaamKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:text="@string/lblFirstNameInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtVoornaamKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:text="@string/lblStreetInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtStraatKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:text="@string/lblTownInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtGemeenteKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:text="@string/lblNumberInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtNrKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:text="@string/lblZipCodeInstellingen2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtPostcodeKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="200dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/btnFragKeuze"
             android:text="@string/btnConfirmInstellingen2"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp" />
 

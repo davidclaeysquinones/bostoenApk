@@ -4,12 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +15,7 @@
                 android:id="@+id/klantIsEigenaar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 android:textColor="#000000"
                 android:checked="false"/>
 
@@ -30,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:text="Naam:"
@@ -40,9 +34,9 @@
 
             <EditText
                 android:id="@+id/txtNaamKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="text"
                 android:layout_marginLeft="71dp"/>
 
             <TextView
@@ -53,9 +47,9 @@
 
             <EditText
                 android:id="@+id/txtVoornaamKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="text"
                 android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
@@ -63,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:text="Gemeente:"
@@ -73,10 +67,10 @@
 
             <EditText
                 android:id="@+id/txtGemeenteKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
-                android:layout_marginLeft="20dp"/>
+                android:inputType="text"
+                android:layout_marginLeft="27dp"/>
 
             <TextView
                 android:text="Postcode:"
@@ -86,9 +80,9 @@
 
             <EditText
                 android:id="@+id/txtPostcodeKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="number"
                 android:layout_marginLeft="34dp"/>
 
         </LinearLayout>
@@ -106,9 +100,9 @@
 
             <EditText
                 android:id="@+id/txtStraatKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="text"
                 android:layout_marginLeft="71dp"/>
 
             <TextView
@@ -119,9 +113,9 @@
 
             <EditText
                 android:id="@+id/txtNrKlant"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width_small"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="number"
                 android:layout_marginLeft="112dp"/>
 
         </LinearLayout>
@@ -133,11 +127,10 @@
             <Button
                 android:id="@+id/btnFragKeuze"
                 android:text="Bevestig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp" />
 
         </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

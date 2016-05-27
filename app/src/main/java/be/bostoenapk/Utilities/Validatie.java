@@ -32,6 +32,8 @@ public class Validatie {
      * @return boolean true als het een geldig adres is.
      */
     public boolean valEmail(String email, int maxLength) {
+        email = email.replace('"', ' ');
+        email = email.trim();
         if(maxLength != -1 && email.length() > maxLength) {
             return false;
         }
@@ -50,6 +52,7 @@ public class Validatie {
      * @return boolean true als de string klopt.
      */
     public boolean valString(String s, int maxLength, int minLength) {
+        s = s.replace('"', ' ');
         if(s.equals(null) || s.equals("")) {
             return false;
         }
@@ -69,6 +72,7 @@ public class Validatie {
      * @return boolean die true geeft als de lengte correct is.
      */
     public boolean valStringExactength(String s, int length) {
+        s = s.replace('"', ' ');
         if(s.equals(null) || s.equals("")) {
             return false;
         }

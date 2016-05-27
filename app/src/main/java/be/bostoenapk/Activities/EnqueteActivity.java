@@ -32,6 +32,7 @@ import be.bostoenapk.Model.Vraag;
 import be.bostoenapk.Model.VragenDossier;
 import be.bostoenapk.R;
 
+
 public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
 
     private DataDBAdapter dataDBAdapter;
@@ -42,7 +43,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
     //Declaratie voor de DrawerLayout
 
-    private String[] mVragen = {"Home", "Historiek","Annuleer"}; //Namen van de gemaakte vragen in deze array
+    private String[] mVragen = {"Home", "Historiek","Reset enquete"}; //Namen van de gemaakte vragen in deze array
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -152,18 +153,17 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
 
                     break;
-                case 2: dataDBAdapter.open();
-                    ArrayList<VragenDossier> vragenDossiers= dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
-                    if(vragenDossiers!=null)
-                    {
-                        for(VragenDossier vragenDossier : vragenDossiers)
-                        {
+                case 2: if(getLastDossier()!=null) {
+                    dataDBAdapter.open();
+                    ArrayList<VragenDossier> vragenDossiers = dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
+                    if (vragenDossiers != null) {
+                        for (VragenDossier vragenDossier : vragenDossiers) {
                             dataDBAdapter.deleteVragenDossier(vragenDossier);
                         }
                     }
                     dataDBAdapter.close();
+                }
                     setLastDossier(null);
-                    setOplossing(null);
                     setLastVraag(null);
                     setLastReeks(null);
 
@@ -496,13 +496,14 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
     public  void setOplossing ( String oplossing)
     {
         SharedPreferences.Editor editor = sharedpreferences.edit();
+
         if(oplossing!=null)
         {
 
             String vorig = "";
             if (sharedpreferences.contains("Oplossing"))
             {
-                vorig = sharedpreferences.getString("Oplossing",null);
+                vorig = sharedpreferences.getString("Oplossing","");
             }
 
             editor.putString("Oplossing",vorig+"\n"+oplossing);
@@ -513,6 +514,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
             editor.putString("Oplossing",null);
         }
         editor.commit();
+
     }
 
     public String getOplossing(){
@@ -524,6 +526,16 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         if(sharedpreferences.contains("Email"))
         {
             return sharedpreferences.getString("Email","");
+        }
+        else return null;
+    }
+
+    @Override
+    public String getNaam() {
+        if(sharedpreferences.contains("Naam"))
+        {
+            String s = (sharedpreferences.getString("Voornaam","") + " " + sharedpreferences.getString("Naam",""));
+            return s;
         }
         else return null;
     }

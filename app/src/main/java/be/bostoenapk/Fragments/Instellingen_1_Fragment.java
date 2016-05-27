@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import be.bostoenapk.R;
 import be.bostoenapk.Utilities.Validatie;
@@ -71,10 +72,10 @@ public class Instellingen_1_Fragment extends Fragment {
     //Valideer input
     public void bevestig() {
         if(controleerVelden()) {
-
             mListener.setVoornaam(voornaam.getText().toString());
             mListener.setNaam(naam.getText().toString());
             mListener.setEmail(email.getText().toString());
+            Toast.makeText(getActivity(), "Instellingen opgeslagen", Toast.LENGTH_LONG).show();
         }
     }
 

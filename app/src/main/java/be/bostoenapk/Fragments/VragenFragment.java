@@ -2,7 +2,6 @@ package be.bostoenapk.Fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +28,6 @@ public class VragenFragment extends Fragment {
     private int vraagid;
     private boolean answered=false;
     private AntwoordOptie huidig;
-    private SharedPreferences sharedpreferences;
     private TextView vraagtekst;
     private TextView tip;
     private ListView antwoorden;
@@ -52,23 +50,28 @@ public class VragenFragment extends Fragment {
         ok = (Button) view.findViewById(R.id.btnOK);
         image = (ImageView) view.findViewById(R.id.imageView);
 
+
+
         Utility.setListViewHeightBasedOnChildren(antwoorden);
         final Vraag vraag = mListener.getVraag(vraagid);
+        //controleren of de opgegeven vraag bestaat
         if(vraag!=null)
         {
+            //antwoorden op vraag ophalen
             final ArrayList<AntwoordOptie> antwoordOpties=mListener.getAntwoorden(vraagid);
             antwoorden.setAdapter(new AntwoordOptie.AntwoordOptieAdapter(getActivity().getApplicationContext(), antwoordOpties));
-            //  Utility.setListViewHeightBasedOnChildren(antwoorden);
 
 
-            //kijken of de huidige vraag een afbeelding heeft
+
 
 
             tip.setVisibility(View.INVISIBLE);
             tip.setVisibility(View.GONE);
             info.setVisibility(View.INVISIBLE);
+            //kijken of een eventuele tip moet worden weergegeven
             if(mListener.getTips())
             {
+
                 if(vraag.getTip()!=null && !vraag.getTip().equals(""))
                 {
                     tip.setVisibility(View.VISIBLE);
@@ -83,8 +86,11 @@ public class VragenFragment extends Fragment {
 
             image.setVisibility(View.INVISIBLE);
             image.setVisibility(View.GONE);
+
+            //kijken of een eventuele afbeeldding moet worden weergegeven
             if(mListener.getAfbeeldingen())
             {
+                //kijken of de huidige vraag een afbeelding heeft
                 if(vraag.getImage()!=null)
                 {
                     image.setVisibility(View.VISIBLE);
@@ -98,32 +104,39 @@ public class VragenFragment extends Fragment {
 
 
 
-
-
-            ArrayList<VragenDossier> vragenDossiers=mListener.getVragenDossiers(mListener.getLastDossier());
-            if(vragenDossiers!=null)
+            Integer lastDossier =mListener.getLastDossier();
+            if(lastDossier!=null)
             {
-                String antwoord="";
-                for(int i=0;i<vragenDossiers.size();i++)
+                //Antwoorden op vragen van het laatste dossier ophalen
+                ArrayList<VragenDossier> vragenDossiers=mListener.getVragenDossiers(lastDossier);
+                //controleren of er antwoorden zijn
+                if(vragenDossiers!=null)
                 {
-                    VragenDossier vragenDossier = vragenDossiers.get(i);
-                    if(vragenDossier.getVraagTekst().equals(vraag.getTekst()))
+                    String antwoord="";
+                    for(int i=0;i<vragenDossiers.size();i++)
                     {
-                        antwoord=vragenDossier.getAntwoordTekst();
+                        VragenDossier vragenDossier = vragenDossiers.get(i);
+                        //Het gegeven antwoord van de gebruiker ophalen
+                        if(vragenDossier.getVraagTekst().equals(vraag.getTekst()))
+                        {
+                            antwoord=vragenDossier.getAntwoordTekst();
+                        }
+                    }
+                    for (int i =0;i<antwoordOpties.size();i++)
+                    {
+                        //Het gegeven antwoord van de gebruiker in de ListView selecteren
+                        if(antwoordOpties.get(i).getAntwoordTekst().equals(antwoord))
+                        {
+                            huidig=antwoordOpties.get(i);
+                            antwoordOpties.get(i).setChecked(true);
+                            answered=true;
+                            Log.d("Vraag","Match");
+                        }
                     }
                 }
-                for (int i =0;i<antwoordOpties.size();i++)
-                {
-                    if(antwoordOpties.get(i).getAntwoordTekst().equals(antwoord))
-                    {
-                        huidig=antwoordOpties.get(i);
-                        antwoordOpties.get(i).setChecked(true);
-                        answered=true;
-                        Log.d("Vraag", "Match");
-                    }
-                }
-            }
 
+
+            }
 
 
 
@@ -221,10 +234,6 @@ public class VragenFragment extends Fragment {
     {
         this.vraagid=vraagid;
     }
-    public int getVraagid()
-    {
-        return vraagid;
-    }
 
 
     @Override
@@ -247,6 +256,5 @@ public class VragenFragment extends Fragment {
 
 
     }
-
 
 }

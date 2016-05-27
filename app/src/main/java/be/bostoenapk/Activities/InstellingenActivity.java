@@ -32,7 +32,6 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         Instellingen_1_Fragment.OnFragmentInteractionListener, Instellingen_2_Fragment.OnFragmentInteractionListener, Instellingen_3_Fragment.OnFragmentInteractionListener  {
 
 
-
     private TabHost mTabHost;
     private ViewPager mViewPager;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, InstellingenActivity.TabInfo>();
@@ -186,7 +185,7 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
     }
 
 
-    public class TabInfo {
+    private class TabInfo {
         private String tag;
         private Class<?> clss;
         private Bundle args;
@@ -244,8 +243,10 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
 
 
         gereed.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v){
+
                 goToPrevious();
             }
         });
@@ -366,5 +367,6 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         // TODO Auto-generated method stub
 
     }
+
 
 }

@@ -10,5 +10,6 @@
     <color name="accent_material_light">#d5eae8</color>
     <color name="primary_text_material_dark">#e3000b</color>
     <color name="primary_text_material_light">#e3000b</color>
+    <color name="primary_button_dark">#AA0000</color>
 
 </resources>

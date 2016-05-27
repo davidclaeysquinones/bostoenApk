@@ -8,15 +8,21 @@
 
     <uses-sdk android:minSdkVersion="17" />
     <application android:icon="@drawable/logo" android:label="RenBEN" android:theme="@style/ThemeBostoen">
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".Activities.LoginActivity"
+            android:windowSoftInputMode="stateHidden"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activities.EnqueteActivity"
-            android:theme="@style/ThemeBostoen"/>
+            android:theme="@style/ThemeBostoen"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activities.InstellingenActivity" />
+        <activity android:name=".Activities.InstellingenActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

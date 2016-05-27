@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reeksLijst"
+        android:layout_marginTop="10dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         />
@@ -16,7 +17,7 @@
         android:text="Geef identificatienaam aan reeks:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>
 
@@ -31,7 +32,7 @@
     <Button
         android:id="@+id/btnFragVragen"
         android:text="Volgende"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

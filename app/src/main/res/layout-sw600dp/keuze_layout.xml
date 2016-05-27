@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/reeksLijst"
         android:divider="@null"
+        android:layout_marginTop="10dp"
         android:dividerHeight="0dp" />
 
     <TextView
@@ -22,16 +23,17 @@
     <EditText
         android:id="@+id/txtIdentificatieKeuze"
         android:layout_width="wrap_content"
+        android:minWidth="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:width="300dp"
+        android:hint="bv. Linker badkamermuur"
         android:layout_gravity="center"
         android:layout_margin="15dp"/>
 
     <Button
         android:id="@+id/btnFragVragen"
         android:text="Volgende"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/edittext_width"
+        android:layout_height="@dimen/button_height"
         android:layout_gravity="center"
         android:layout_margin="20dp" />
 

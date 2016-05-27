@@ -3,60 +3,58 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <TextView
         android:text="@string/lblFirstNameLoginadviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:id="@+id/txtVoornaamAdviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:width="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="15dp" />
+        android:inputType="textPersonName"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:text="@string/lblNameLoginadviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:id="@+id/txtNaamAdviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:width="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"/>
+        android:inputType="textPersonName"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:text="@string/lblEmailLgoninadviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:id="@+id/txtEmailAdviseur"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
-        android:width="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"/>
+        android:inputType="textEmailAddress"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"/>
 
     <Button
         android:id="@+id/btnFragKlant"
         android:text="@string/btnNextLoginadviseur"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"/>
 
 </LinearLayout>

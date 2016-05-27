@@ -74,7 +74,7 @@ public class LoginAdviseurFragment extends Fragment {
                     email.setError(null);
                     blnEmail=true;
                 }
-                else email.setError("Dit veld mag niet leeg zijn (max. 100 karakters)");
+                else email.setError("Geef een correct email adres in (max. 100 karakters).");
 
                 if(blnVoornaam && blnNaam && blnEmail)
                 {

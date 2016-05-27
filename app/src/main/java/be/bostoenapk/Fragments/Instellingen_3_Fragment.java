@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import be.bostoenapk.R;
 
@@ -55,7 +56,7 @@ public class Instellingen_3_Fragment extends Fragment {
     }
 
     public void bevestig(boolean tips, boolean afbeeldingen){
-
+        Toast.makeText(getActivity(), "Instellingen opgeslagen", Toast.LENGTH_LONG).show();
         mListener.setInstellingenOverig(tips, afbeeldingen);
 
     }

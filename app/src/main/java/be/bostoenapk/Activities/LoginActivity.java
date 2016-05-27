@@ -43,15 +43,18 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
 
         if (savedInstanceState == null) {
+            //Controleren of de adviseur zijn gegevens al heeft ingevuld
             if(!sharedpreferences.contains("Voornaam"))
             {
-                Log.d("no shared preferences", "");
+                Log.d("no shared preferences","");
+                //inladen LoginAdviseurFragment
                 getFragmentManager().beginTransaction().add(R.id.container, new LoginAdviseurFragment(), "AdviseurFragment")
                         .addToBackStack("AdviseurFragment")
                         .commit();
             }
             else
             {
+                //inladen van HomeFragment
                 getFragmentManager().beginTransaction().add(R.id.container, new HomeFragment(), "HomeFragment")
                         .addToBackStack("HomeFragment")
                         .commit();
@@ -62,13 +65,16 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
         dataDBAdapter = new DataDBAdapter(getApplicationContext());
 
+        //controleren dat er geen enquete bezig is
         if(getLastVraag()==null && getLastPlaats()==null)
         {
+            //ophalen van alle gegevens
             /** if(getLastUpdate()==null)
              {
              sync();
              }
              else {
+             //ophalen van nieuwe gegevens sinds laatste update
              sync(getLastUpdate());
              }*/
         }
@@ -78,6 +84,7 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
         //sync();
         Log.d("oncreate","end");
+        //methode om te testen
         addSampleData();
 
 
@@ -133,6 +140,7 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
     public void goToInstellingen(){
         Intent intent = new Intent(getApplicationContext(), InstellingenActivity.class);
+        // deze string wordt meegegeven zodat InstellingenActivity weet vanuit welk fragment werd genavigeerd
         intent.putExtra("last_fragment","home");
 
         startActivity(intent);
@@ -313,9 +321,11 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
     @Override
     public void goToVraag(int id) {
         Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
+        //laatste vraag aan inten meegeven
         intent.putExtra("lastVraag",id);
         startActivity(intent);
     }
+
 
     public void addSampleData()  {
 
@@ -329,8 +339,8 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
         Bitmap bitone = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.test1);
         Bitmap bittwo = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.test2);
 
-        dataDBAdapter.addVraag(new Vraag(null,"Hoe dik is de muur","meet in cm",bitone,new CustomDate(),1,true));
-        dataDBAdapter.addVraag(new Vraag(null, "Hoe groot is de tuin", "", bittwo, new CustomDate(), 2, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Hoe dik is de muur", "meet in cm", bitone, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Hoe groot is de tuin", "meet in m", bittwo, new CustomDate(), 2, true));
         dataDBAdapter.addVraag(new Vraag(null, "Wat is de helling van het dak", "", null, new CustomDate(), 3, true));
 
 
@@ -345,9 +355,10 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
         dataDBAdapter.addVraag(new Vraag(null, "Zijn er vochtproblemen ?", null, null, new CustomDate(), 1, true));
 
         dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "thermoblok", "", null, "", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "cyproc", "", null, "je hebt een kartonnen huis", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "ja", "", null, "welkom kakkerlakken", true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "cyproc", "", null, "U moet het huis beter isoleren", true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "ja", "", null, "U moet de hoek afwerken", true, new CustomDate()));
         dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "nee", "", null, "", true, new CustomDate()));
+
 
         dataDBAdapter.close();
 
@@ -453,9 +464,9 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
                     }
                 }
-            } catch (ExecutionException |InterruptedException|ParseException e) {
+            } catch (ExecutionException|InterruptedException|ParseException e) {
                 e.printStackTrace();
-                Log.d("Ophalen webservices milukt",e.getMessage());
+                Log.d("Ophalen webservices mislukt",e.getMessage());
                 return false;
             }
 
@@ -558,7 +569,6 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
         Log.d("Sync","(date)");
         return true;
     }
-
 
 }
 
