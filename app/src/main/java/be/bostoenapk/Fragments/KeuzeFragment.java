@@ -29,6 +29,8 @@ public class KeuzeFragment extends Fragment {
     boolean error = false;
     private Validatie val;
 
+    private EditText dossiernaam;
+
     public void setEindFragment(boolean eindFragment)
     {
         this.eindFragment=eindFragment;
@@ -43,9 +45,10 @@ public class KeuzeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.keuze_layout, container, false);
 
-        val : new Validatie();
+        val = new Validatie();
         Button volgende = (Button) view.findViewById(R.id.btnFragVragen);
-        final EditText dossiernaam = (EditText) view.findViewById(R.id.txtIdentificatieKeuze);
+        dossiernaam = (EditText) view.findViewById(R.id.txtIdentificatieKeuze);
+        val = new Validatie();
         error = false;
 
         if (mListener.getLastDossier() != null) {
@@ -57,16 +60,16 @@ public class KeuzeFragment extends Fragment {
                 }
             }
             else {
-                Log.d("Plaats", "null");
+                Log.d("Plaats","null");
             }
 
         }
         volgende.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("volgende", "keuzefragment");
+                Log.d("Volgende", "keuzefragment");
 
-                if (!val.valString(dossiernaam.getText().toString(), 51, -1))
+                if (dossiernaam.getText().equals(null) || !val.valString(dossiernaam.getText().toString(), 51, -1))
                 {
                     dossiernaam.setError("Geef een correcte naam op");
                     error = true;

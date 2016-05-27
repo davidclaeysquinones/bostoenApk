@@ -3,19 +3,12 @@ package be.bostoenapk.Utilities;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by david on 9/05/2016.
- */
+
 public class Validatie {
     private Pattern pattern;
     private Matcher matcher;
-    /**
-     * public boolean validate(final String hex) {
-     matcher = pattern.matcher(hex);
-     return matcher.matches();
-
-     }
-     * Regeliere expressie om een email adres te controleren.
+    /*
+     * Reguliere expressie om een email adres te controleren.
      */
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -32,6 +25,7 @@ public class Validatie {
      * @return boolean true als het een geldig adres is.
      */
     public boolean valEmail(String email, int maxLength) {
+        email = email.replace('"', ' ');
         if(maxLength != -1 && email.length() > maxLength) {
             return false;
         }
@@ -50,6 +44,7 @@ public class Validatie {
      * @return boolean true als de string klopt.
      */
     public boolean valString(String s, int maxLength, int minLength) {
+        s = s.replace('"', ' ');
         if(s.equals(null) || s.equals("")) {
             return false;
         }
@@ -69,6 +64,7 @@ public class Validatie {
      * @return boolean die true geeft als de lengte correct is.
      */
     public boolean valStringExactength(String s, int length) {
+        s = s.replace('"', ' ');
         if(s.equals(null) || s.equals("")) {
             return false;
         }

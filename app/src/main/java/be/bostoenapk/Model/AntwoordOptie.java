@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import be.bostoenapk.R;
 import be.bostoenapk.Utilities.CustomDate;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class AntwoordOptie {
     private int vraagId;
     private String antwoordTekst;

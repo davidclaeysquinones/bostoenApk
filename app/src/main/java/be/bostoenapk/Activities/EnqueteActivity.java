@@ -1,15 +1,18 @@
 package be.bostoenapk.Activities;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,20 +35,22 @@ import be.bostoenapk.Model.Vraag;
 import be.bostoenapk.Model.VragenDossier;
 import be.bostoenapk.R;
 
-public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
+
+public class EnqueteActivity extends AppCompatActivity implements KeuzeFragment.OnFragmentInteractionListener, VragenFragment.OnFragmentInteractionListener, EindFragment.OnFragmentInteractionListener, HistoriekFragment.OnFragmentInteractionListener{
 
     private DataDBAdapter dataDBAdapter;
     private static final String PREFS_NAME = "COM.BOSTOEN.BE";
-
+    private boolean drawerOpen;
     private SharedPreferences sharedpreferences;
     private Integer lastReeks;
 
     //Declaratie voor de DrawerLayout
 
-    private String[] mVragen = {"Home", "Historiek","Annuleer"}; //Namen van de gemaakte vragen in deze array
+    private String[] mVragen = {"Home", "Historiek","Annuleer reeks"}; //Namen van de gemaakte vragen in deze array
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar myToolbar;
 
 
     @Override
@@ -53,10 +58,11 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enquete_layout);
         dataDBAdapter = new DataDBAdapter(getApplicationContext());
-
+        drawerOpen = false;
         sharedpreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         boolean previousInstellingen = false;
 
         //Nieuwe enquete kiezen
@@ -86,32 +92,21 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
                     Log.d("Previous instellingen", "false");
                 }
 
-
             }
-
-
 
         }
 
 
 
 
-
-
-
-
-
-
-        //DrawerLayout instellingen
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.icon, R.string.drawer_open, R.string.drawer_close) {
+        //Toggle knop voor de drawer
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close){
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
                 invalidateOptionsMenu();
             }
-
 
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -131,8 +126,24 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         //Clicklistener (verwijst naar DrawerItemClickListener)
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(!drawerOpen) {
+            mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+            drawerOpen = true;
+        } else {
+            mDrawerLayout.closeDrawer(GravityCompat.START);  // OPEN DRAWER
+            drawerOpen = false;
+        }
+        return true;
+
+    }
 
     //Navigatie in de DrawerLayout
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -142,34 +153,32 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
             switch (position){
                 case 0: Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
-                    mDrawerLayout.closeDrawers();
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
 
                     break;
                 case 1: getFragmentManager().beginTransaction().replace(R.id.content_frame, new HistoriekFragment(), "HistoriekFragment")
                         .addToBackStack("HistoriekFragment")
                         .commit();
-                    mDrawerLayout.closeDrawers();
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
 
 
                     break;
-                case 2: dataDBAdapter.open();
-                    ArrayList<VragenDossier> vragenDossiers= dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
-                    if(vragenDossiers!=null)
-                    {
-                        for(VragenDossier vragenDossier : vragenDossiers)
-                        {
+                case 2: if(getLastDossier()!=null) {
+                    dataDBAdapter.open();
+                    ArrayList<VragenDossier> vragenDossiers = dataDBAdapter.getVragenDossiersFromCursor(dataDBAdapter.getVragenDossiers(getLastDossier()));
+                    if (vragenDossiers != null) {
+                        for (VragenDossier vragenDossier : vragenDossiers) {
                             dataDBAdapter.deleteVragenDossier(vragenDossier);
                         }
                     }
                     dataDBAdapter.close();
+                }
                     setLastDossier(null);
-                    setOplossing(null);
                     setLastVraag(null);
                     setLastReeks(null);
 
                     goToKeuzeFragment();
                     break;
-
 
 
             }
@@ -213,7 +222,6 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
 
             editor.commit();
         }
-
     }
 
     public Integer getLastVraag()
@@ -271,14 +279,12 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
     }
 
 
-
     public void goToInstellingen(Integer lastDossier){
         Intent intent = new Intent(getApplicationContext(), InstellingenActivity.class);
         intent.putExtra("last_fragment","eind");
         intent.putExtra("last_dossier", lastDossier);
         startActivity(intent);
     }
-
 
 
     @Override
@@ -312,7 +318,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
             }
 
         } catch (ParseException e) {
-            Log.d("Verkeerd formaat datum",e.getMessage());
+            Log.d("ParseException getVraag", e.getMessage());
             dataDBAdapter.close();
         }
         dataDBAdapter.close();
@@ -326,7 +332,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         try{
             antwoordOpties=dataDBAdapter.getAntwoordOptiesFromCursor(dataDBAdapter.getAntwoordOptiesVraag(vraagid));
         } catch (ParseException e) {
-            Log.d("Verkeerd formaat datum", e.getMessage());
+            Log.d("ParseException getAntwoorden", e.getMessage());
             dataDBAdapter.close();
         }
         dataDBAdapter.close();
@@ -398,7 +404,7 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         try {
             dossier = dataDBAdapter.getDossierFromCursor(dataDBAdapter.getDossier(id));
         } catch (ParseException e) {
-            Log.d("Activity parse error",e.getMessage());
+            Log.d("Parse Error getDossier",e.getMessage());
         }
         dataDBAdapter.close();
         return dossier;
@@ -454,10 +460,11 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
             }
             else {
                 return lastPlaats;
+
             }
         }
         else {
-            Log.d("get lastplaats", "null key not found");
+            Log.d("getLastplaats", "null key not found");
             return null;
         }
     }
@@ -496,13 +503,14 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
     public  void setOplossing ( String oplossing)
     {
         SharedPreferences.Editor editor = sharedpreferences.edit();
+
         if(oplossing!=null)
         {
 
             String vorig = "";
             if (sharedpreferences.contains("Oplossing"))
             {
-                vorig = sharedpreferences.getString("Oplossing",null);
+                vorig = sharedpreferences.getString("Oplossing","");
             }
 
             editor.putString("Oplossing",vorig+"\n"+oplossing);
@@ -513,6 +521,20 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
             editor.putString("Oplossing",null);
         }
         editor.commit();
+
+    }
+
+    @Override
+    public ArrayList<Dossier> getDossiersPlaats(int plaatsid) {
+        ArrayList<Dossier> dossiers = null;
+        dataDBAdapter.open();
+        try {
+            dossiers=dataDBAdapter.getDossiersFromsCursor(dataDBAdapter.getDossiersPlaats(plaatsid));
+        } catch (ParseException e) {
+            Log.d("getDossiers","ParseException");
+        }
+        dataDBAdapter.close();
+        return dossiers;
     }
 
     public String getOplossing(){
@@ -524,6 +546,16 @@ public class EnqueteActivity extends Activity implements KeuzeFragment.OnFragmen
         if(sharedpreferences.contains("Email"))
         {
             return sharedpreferences.getString("Email","");
+        }
+        else return null;
+    }
+
+    @Override
+    public String getNaam() {
+        if(sharedpreferences.contains("Naam"))
+        {
+            String s = (sharedpreferences.getString("Voornaam","") + " " + sharedpreferences.getString("Naam",""));
+            return s;
         }
         else return null;
     }

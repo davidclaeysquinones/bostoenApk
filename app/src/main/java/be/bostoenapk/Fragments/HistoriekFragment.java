@@ -18,9 +18,7 @@ import be.bostoenapk.Model.Vraag;
 import be.bostoenapk.Model.VragenDossier;
 import be.bostoenapk.R;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 
 public class HistoriekFragment extends Fragment {
 

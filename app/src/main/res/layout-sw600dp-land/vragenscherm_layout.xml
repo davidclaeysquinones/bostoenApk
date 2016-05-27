@@ -23,17 +23,14 @@
             android:layout_height="wrap_content"
             android:weightSum="2"
             android:orientation="horizontal">
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
+
                 <ListView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:divider="@null"
                     android:dividerHeight="0dp"
                     android:id="@+id/AntwoordenList"/>
-            </FrameLayout>
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="250dp"
@@ -55,19 +52,18 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_height="match_parent"
                 android:text="TIP: een tip hier"
                 android:id="@+id/txtTip"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:text="OK"
             android:id="@+id/btnOK"
             android:layout_above="@+id/txtTip"

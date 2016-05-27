@@ -9,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import be.bostoenapk.R;
 import be.bostoenapk.Utilities.Validatie;
 
-
-/**
- * Created by david on 2/05/2016.
- */
 
 
 public class Instellingen_1_Fragment extends Fragment {
@@ -71,28 +68,32 @@ public class Instellingen_1_Fragment extends Fragment {
     //Valideer input
     public void bevestig() {
         if(controleerVelden()) {
-
-            mListener.setVoornaam(voornaam.getText().toString());
-            mListener.setNaam(naam.getText().toString());
-            mListener.setEmail(email.getText().toString());
+            mListener.setVoornaam(voornaam.getText().toString().trim());
+            mListener.setNaam(naam.getText().toString().trim());
+            mListener.setEmail(email.getText().toString().trim());
+            Toast.makeText(getActivity(), "Instellingen opgeslagen", Toast.LENGTH_LONG).show();
         }
     }
 
     public boolean controleerVelden() {
-        if(!val.valString(voornaam.getText().toString(), 51, -1)) {
-            voornaam.setError("Gelieve een correcte voornaam in te geven (max. 50 karakters)");
-            return false;
-        } else voornaam.setError(null);
-        if (!val.valString(naam.getText().toString(), 51, -1)) {
-            naam.setError("Gelieve een correcte naam in te geven (max. 50 karakters)");
-            return false;
-        } else naam.setError(null);
-        if (!val.valEmail(email.getText().toString(), 101)) {
-            email.setError("Gelieve een correcte email in te geven");
-            return false;
-        } else naam.setError(null);
+        boolean voorn = true;
+        boolean nm = true;
+        boolean eml = true;
 
-        return true;
+        if(!val.valString(voornaam.getText().toString().trim(), 51, -1)) {
+            voornaam.setError("Gelieve een correcte voornaam in te geven (max. 50 karakters)");
+            voorn = false;
+        } else voornaam.setError(null);
+        if (!val.valString(naam.getText().toString().trim(), 51, -1)) {
+            naam.setError("Gelieve een correcte naam in te geven (max. 50 karakters)");
+            nm = false;
+        } else naam.setError(null);
+        if (!val.valEmail(email.getText().toString().trim(), 101)) {
+            email.setError("Gelieve een correct e-mailadres in te geven");
+            eml=  false;
+        } else email.setError(null);
+        if(voorn && nm && eml) return true;
+        else return false;
     }
 
     public interface OnFragmentInteractionListener {

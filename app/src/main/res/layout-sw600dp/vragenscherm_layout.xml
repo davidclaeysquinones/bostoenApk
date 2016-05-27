@@ -23,16 +23,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="@dimen/margin_40_dp"/>
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="270dp"
                 android:divider="@null"
                 android:dividerHeight="0dp"
                 android:id="@+id/AntwoordenList"/>
-        </FrameLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -75,8 +73,8 @@
 
 </LinearLayout>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:text="Volgende"
             android:id="@+id/btnOK"
             android:layout_gravity="center"/>

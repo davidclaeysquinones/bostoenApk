@@ -11,9 +11,9 @@
         android:text="Welkom"
         android:id="@+id/txtWelkom"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="75dp"/>
+        android:layout_marginBottom="60dp"/>
 
     <Button
         android:layout_width="@dimen/button_width"
@@ -36,4 +36,14 @@
         android:text="About"
         android:id="@+id/btnAbout"
         android:layout_gravity="center" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/footer"
+            android:scaleType="fitXY"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 </LinearLayout>

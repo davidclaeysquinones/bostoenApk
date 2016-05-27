@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layoutTop">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_20_dp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Naam: Ruben Descheemaecker"
+        android:id="@+id/txtControleNaam"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: ruben.descheemaecker@hotmail.com"
+        android:id="@+id/txtControleEmail"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:src="@drawable/settings2"
+            android:layout_gravity="center"
+            android:id="@+id/btnWijzigen"/>
+    </LinearLayout>
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="PLACEHOLDER TEXT : MAX 70 LIJNEN"
+        android:text="PLACEHOLDER TEXT : IF YOU SEE THIS, SOMETHING WENT WRONG."
         android:id="@+id/txtResultaat"
-        android:maxLines = "60"
+        android:maxLines = "1000"
         android:textSize="25sp"
         android:scrollbars = "vertical"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/btnWijzigen"/>
+        android:layout_below="@id/layoutTop"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wijzigingen"
-        android:id="@+id/btnWijzigen"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -33,18 +62,19 @@
     android:gravity="center_horizontal"
     android:orientation="horizontal">
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="KIES REEKS"
-        android:layout_marginEnd="25dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height_extended"
+        android:text="@string/btnChooseListEindscherm"
+        android:layout_marginEnd="15dp"
         android:id="@+id/btnKiesReeks" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Verzenden"
-        android:layout_marginStart="25dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height_extended"
+        android:text="@string/btnSendEindscherm"
+        android:layout_marginStart="15dp"
+        android:gravity="center"
         android:id="@+id/btnVerzenden"/>
 </LinearLayout>
-
-</RelativeLayout>
+    </LinearLayout>
+</ScrollView>

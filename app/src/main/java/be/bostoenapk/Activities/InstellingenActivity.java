@@ -32,7 +32,6 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         Instellingen_1_Fragment.OnFragmentInteractionListener, Instellingen_2_Fragment.OnFragmentInteractionListener, Instellingen_3_Fragment.OnFragmentInteractionListener  {
 
 
-
     private TabHost mTabHost;
     private ViewPager mViewPager;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, InstellingenActivity.TabInfo>();
@@ -185,8 +184,8 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         dataDBAdapter.close();
     }
 
-
-    public class TabInfo {
+    //Initialisatie van de ViewPager
+    private class TabInfo {
         private String tag;
         private Class<?> clss;
         private Bundle args;
@@ -198,24 +197,17 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         }
 
     }
-    /**
-     * A simple factory that returns dummy views to the Tabhost
-     * @author mwho
-     */
+
     class TabFactory implements TabHost.TabContentFactory {
 
         private final Context mContext;
 
-        /**
-         * @param context
-         */
+
         public TabFactory(Context context) {
             mContext = context;
         }
 
-        /** (non-Javadoc)
-         * @see android.widget.TabHost.TabContentFactory#createTabContent(java.lang.String)
-         */
+
         public View createTabContent(String tag) {
             View v = new View(mContext);
             v.setMinimumWidth(0);
@@ -244,8 +236,10 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
 
 
         gereed.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v){
+
                 goToPrevious();
             }
         });
@@ -273,17 +267,12 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
         }
         return true;
     }
-    /** (non-Javadoc)
-     * @see android.support.v4.app.FragmentActivity#onSaveInstanceState(android.os.Bundle)
-     */
+
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("tab", mTabHost.getCurrentTabTag()); //save the tab selected
         super.onSaveInstanceState(outState);
     }
-//
-    /**
-     * Initialise ViewPager
-     */
+
     private void intialiseViewPager() {
 
         List<Fragment> fragments = new Vector<Fragment>();
@@ -324,28 +313,25 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
     }
 
 
+    //Deze methode voegt een tab toe aan de ViewPager
     private static void AddTab(InstellingenActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
-        // Attach a Tab view factory to the spec
+
         tabSpec.setContent(activity.new TabFactory(activity));
         tabHost.addTab(tabSpec);
     }
 
-    /** (non-Javadoc)
-     * @see android.widget.TabHost.OnTabChangeListener#onTabChanged(java.lang.String)
-     */
+
     public void onTabChanged(String tag) {
         //TabInfo newTab = this.mapTabInfo.get(tag);
         int pos = this.mTabHost.getCurrentTab();
         this.mViewPager.setCurrentItem(pos);
     }
 
-    /* (non-Javadoc)
-     * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrolled(int, float, int)
-     */
+
     @Override
     public void onPageScrolled(int position, float positionOffset,
                                int positionOffsetPixels) {
-        // TODO Auto-generated method stub
+
 
     }
 
@@ -354,17 +340,15 @@ public class InstellingenActivity extends FragmentActivity implements TabHost.On
      */
     @Override
     public void onPageSelected(int position) {
-        // TODO Auto-generated method stub
+
         this.mTabHost.setCurrentTab(position);
     }
 
-    /* (non-Javadoc)
-     * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
-     */
+
     @Override
     public void onPageScrollStateChanged(int state) {
-        // TODO Auto-generated method stub
 
     }
+
 
 }

@@ -2,9 +2,7 @@ package be.bostoenapk.Model;
 
 import be.bostoenapk.Utilities.CustomDate;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class Dossier {
     private Integer id;
     private Integer plaatsId;

@@ -37,9 +37,7 @@ import be.bostoenapk.Model.Vraag;
 import be.bostoenapk.R;
 import be.bostoenapk.Utilities.CustomDate;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class Service {
     private Activity activity;
     private static final String PREFS_NAME = "COM.BOSTOEN.BE";

@@ -8,10 +8,6 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false">
-
-
-        
-
         <CheckBox
             android:text="Eigenaar"
             android:id="@+id/klantIsEigenaar"
@@ -20,95 +16,101 @@
             android:layout_margin="10dp"
             android:textColor="#000000"
             android:checked="false" />
-
-        <TextView
-            android:text="Naam:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-
-        <EditText
-            android:id="@+id/txtNaamKlant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="300dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="40dp"/>
-
         <TextView
             android:text="Voornaam:"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtVoornaamKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="300dp"
             android:layout_gravity="center"
+            android:inputType="text"
             android:layout_marginBottom="40dp"/>
+        <TextView
+            android:text="Naam:"
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/txtNaamKlant"
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:layout_marginBottom="40dp"/>
+
+
 
         <TextView
             android:text="Straat:"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtStraatKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="300dp"
             android:layout_gravity="center"
+            android:inputType="text"
             android:layout_marginBottom="40dp"/>
 
         <TextView
             android:text="Nr:"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtNrKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="300dp"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:layout_marginBottom="40dp"/>
+        <TextView
+            android:text="Postcode:"
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/txtPostcodeKlant"
+            android:layout_width="@dimen/edittext_width"
+            android:inputType="number"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"/>
         <TextView
             android:text="Gemeente:"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtGemeenteKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:width="300dp"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"/>
 
-        <TextView
-            android:text="Postcode:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
 
-        <EditText
-            android:id="@+id/txtPostcodeKlant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="300dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="40dp"/>
 
         <Button
             android:id="@+id/btnFragKeuze"
             android:text="Bevestig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp" />
     </LinearLayout>

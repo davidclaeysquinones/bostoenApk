@@ -1,12 +1,13 @@
 package be.bostoenapk.Activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -27,7 +28,7 @@ import be.bostoenapk.Services.Service;
 import be.bostoenapk.Utilities.CustomDate;
 
 
-public class LoginActivity extends Activity implements LoginAdviseurFragment.OnFragmentInteractionListener,LoginKlantFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener{
+public class LoginActivity extends AppCompatActivity implements LoginAdviseurFragment.OnFragmentInteractionListener,LoginKlantFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener{
 
     private final String PREFS_NAME = "COM.BOSTOEN.BE";
     private SharedPreferences sharedpreferences;
@@ -38,10 +39,13 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        android.support.v7.app.ActionBar menu = getSupportActionBar();
+        menu.setDisplayUseLogoEnabled(true);
         sharedpreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
-
+         //Bij de eerste launch van de app wordt de Adviseur gegevens gevraagd
         if (savedInstanceState == null) {
             if(!sharedpreferences.contains("Voornaam"))
             {
@@ -62,20 +66,20 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
 
         dataDBAdapter = new DataDBAdapter(getApplicationContext());
 
-        if(getLastVraag()==null && getLastPlaats()==null)
+     /*   if(getLastVraag()==null && getLastPlaats()==null)
         {
-            /** if(getLastUpdate()==null)
+            if(getLastUpdate()==null)
              {
              sync();
              }
              else {
              sync(getLastUpdate());
-             }*/
+             }
         }
         else {
             Log.d("Login","bezig met enquete");
         }
-
+*/
         //sync();
         Log.d("oncreate","end");
         addSampleData();
@@ -123,8 +127,7 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
     }
 
 
-    //fix voor marnix
-    //marnix //
+
 
     protected void goEnqueteActivity(){
         Intent intent = new Intent(getApplicationContext(), EnqueteActivity.class);
@@ -323,31 +326,55 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
         dataDBAdapter.open();
         dataDBAdapter.clearAppdata();
         dataDBAdapter.addReeks(new Reeks(null, "Muur", 1, new CustomDate()));
-        dataDBAdapter.addReeks(new Reeks(null, "Tuin", 2, new CustomDate()));
+        dataDBAdapter.addReeks(new Reeks(null, "Vloer", 2, new CustomDate()));
         dataDBAdapter.addReeks(new Reeks(null, "Dak", 3, new CustomDate()));
+        dataDBAdapter.addReeks(new Reeks(null, "Gevelsluitingen", 4, new CustomDate()));
+        dataDBAdapter.addReeks(new Reeks(null, "Ventilatie", 5, new CustomDate()));
+        dataDBAdapter.addReeks(new Reeks(null, "Ketel", 6, new CustomDate()));
+        dataDBAdapter.addReeks(new Reeks(null, "Hernieuwbare energie", 7, new CustomDate()));
+
 
         Bitmap bitone = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.test1);
         Bitmap bittwo = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.test2);
 
-        dataDBAdapter.addVraag(new Vraag(null,"Hoe dik is de muur","meet in cm",bitone,new CustomDate(),1,true));
-        dataDBAdapter.addVraag(new Vraag(null, "Hoe groot is de tuin", "", bittwo, new CustomDate(), 2, true));
-        dataDBAdapter.addVraag(new Vraag(null, "Wat is de helling van het dak", "", null, new CustomDate(), 3, true));
+        dataDBAdapter.addVraag(new Vraag(null,"Zijn er ooit vochtproblemen geweest op of in de wand?","Geldt voor alle muren: binnen- en buitenmuren", bitone,new CustomDate(),1,true));
+        dataDBAdapter.addVraag(new Vraag(null, "Kijk naar het aanzicht van de binnenzijde van de wand." +
+                " Zie je langs de binnenzijde van de wand een voorzetwand," +
+                " d.w.z. klinkt de wand hol als je erop klopt?", "Geldt voor alle muren: binnen- en buitenmuren " +
+                "Vb.: lambrisering, planchetten, naden zichtbaar", null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Neem een foto van de binnenafwerking." +
+                " Is er destructief onderzoek mogelijk?", null , null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Breek de voorzetwand gedeeltelijk af." +
+                " Zie je langs de binnenzijde van de wand een massieve" +
+                " muur (eventueel pleisterwerk)?" +
+                " Is er destructief onderzoek mogelijk?", null , null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Net voor uitvoering werken: destructief onderzoek uitvoeren", null , null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Zie je langs de binnenzijde van de wand een massieve" +
+                " muur (eventueel pleisterwerk)?", null , null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Wanneer werd de woning laatst geschilderd of behangen?" +
+                " Zijn ze > 2 jaar geleden schilderd" +
+                " of > 5 jaar behangen" +
+                " of zie je duidelijke barsten in muur met vuil in?", null , null, new CustomDate(), 1, true));
+        dataDBAdapter.addVraag(new Vraag(null, "Zie je een dragende houtskeletwand (eventueel plaat als" +
+                " windversteviging aan binnenzijde houtskeletwand)?", null , null, new CustomDate(), 1, true));
 
 
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(1, "< 10 cm", "", 4, "spouwisolatie", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(1, ">10cm < 30cm", "", 5, "recticel", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(2, "< 30m2", "", null, "onderhoud zelf je tuin", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(2, "> 50m2", "", null, "bel de tuinman", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(3, "<10°", "", null, "het water zal zich opstapelen", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(3, ">15°", "", null, "er is een goede afvoer", true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(1, "Ja", "", 2, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(1, "Nee", "", 2, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(2, "Ja", "", 3, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(2, "Nee", "", 6, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(3, "Ja", "", 4, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(3, "Nee", "", 5, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "Ja", "", 7, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "Nee", "", 8, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "Volgende", "", 4, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(6, "Ja", "", 7, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(6, "Nee", "", 8, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(7, "Ja", "", null, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(7, "Nee", "", null, null, true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(8, "Ja", "", null, "Vaststelling vochtproblemen ter plaatse te bekijken met deskundige", true, new CustomDate()));
+        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(8, "Nee", "", null, "Vaststelling vochtproblemen ter plaatse te bekijken met deskundige", true, new CustomDate()));
 
-        dataDBAdapter.addVraag(new Vraag(null, "Welk type baksteen wordt gebruikt ?", "", null, new CustomDate(), 1, true));
-        dataDBAdapter.addVraag(new Vraag(null, "Zijn er vochtproblemen ?", null, null, new CustomDate(), 1, true));
-
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "thermoblok", "", null, "", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(4, "cyproc", "", null, "je hebt een kartonnen huis", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "ja", "", null, "welkom kakkerlakken", true, new CustomDate()));
-        dataDBAdapter.addAntwoordOptie(new AntwoordOptie(5, "nee", "", null, "", true, new CustomDate()));
 
         dataDBAdapter.close();
 
@@ -455,7 +482,7 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
                 }
             } catch (ExecutionException |InterruptedException|ParseException e) {
                 e.printStackTrace();
-                Log.d("Ophalen webservices milukt",e.getMessage());
+                Log.d("Error bij ophalen",e.getMessage());
                 return false;
             }
 
@@ -528,7 +555,7 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
                 }
             } catch (ExecutionException|InterruptedException|ParseException e) {
                 e.printStackTrace();
-                Log.d("Ophalen webservices milukt",e.getMessage());
+                Log.d("Error bij ophalen",e.getMessage());
                 return false;
             }
 
@@ -551,7 +578,6 @@ public class LoginActivity extends Activity implements LoginAdviseurFragment.OnF
             else {
                 Log.d("sync", "error");
             }
-
 
         }
 

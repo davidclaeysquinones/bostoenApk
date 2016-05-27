@@ -11,9 +11,7 @@ import java.util.ArrayList;
 
 import be.bostoenapk.R;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class Historiek {
     private AntwoordOptie antwoordOptie;
     private Vraag vraag;

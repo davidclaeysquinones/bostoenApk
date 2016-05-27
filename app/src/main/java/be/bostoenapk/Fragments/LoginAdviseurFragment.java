@@ -55,32 +55,29 @@ public class LoginAdviseurFragment extends Fragment {
                 boolean blnVoornaam=false;
                 boolean blnNaam=false;
                 boolean blnEmail=false;
-                if(val.valString(voornaam.getText().toString(), 51, -1))
+                if(val.valString(voornaam.getText().toString().trim(), 51, -1))
                 {
                     voornaam.setError(null);
                     blnVoornaam = true;
-                }
-                else voornaam.setError("Dit veld mag niet leeg zijn (max. 50 karakters)");
+                } else voornaam.setError("Dit veld mag niet leeg zijn (max. 50 karakters)");
 
-                if(val.valString(naam.getText().toString(), 51, -1))
+                if(val.valString(naam.getText().toString().trim(), 51, -1))
                 {
                     naam.setError(null);
                     blnNaam = true;
-                }
-                else naam.setError("Dit veld mag niet leeg zijn (max. 50 karakters)");
+                } else naam.setError("Dit veld mag niet leeg zijn (max. 50 karakters)");
 
-                if(val.valEmail(email.getText().toString(), 101))
+                if(val.valEmail(email.getText().toString().trim(), 101))
                 {
                     email.setError(null);
                     blnEmail=true;
-                }
-                else email.setError("Dit veld mag niet leeg zijn (max. 100 karakters)");
+                } else email.setError("Geef een correct email adres in (max. 100 karakters).");
 
                 if(blnVoornaam && blnNaam && blnEmail)
                 {
-                    mListener.setVoornaam(voornaam.getText().toString());
-                    mListener.setNaam(naam.getText().toString());
-                    mListener.setEmail(email.getText().toString());
+                    mListener.setVoornaam(voornaam.getText().toString().trim());
+                    mListener.setNaam(naam.getText().toString().trim());
+                    mListener.setEmail(email.getText().toString().trim());
                     mListener.goToHomeFragment();
                 }
             }

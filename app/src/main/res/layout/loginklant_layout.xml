@@ -5,121 +5,114 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
 
 
         <CheckBox
             android:id="@+id/klantIsEigenaar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:layout_margin="10dp"
             android:checked="false"
             android:text="@string/chkOwnerLoginklant"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textColor="#000000"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/lblNameLoginklant"
-            android:textSize="20dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtNaamKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:width="200dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/lblFirstNameLoginklant"
-            android:textSize="20dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtVoornaamKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:width="200dp" />
+            android:layout_marginBottom="15dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/lblStreetLoginklant"
-            android:textSize="20dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtStraatKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:width="200dp" />
+            android:layout_marginBottom="15dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/lblTownLoginklant"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/txtGemeenteKlant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:width="200dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/lblNumberLoginklant"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/txtNrKlant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:width="200dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/lblZipCodeLoginklant"
-            android:textSize="20dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
             android:id="@+id/txtPostcodeKlant"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/edittext_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:text="@string/lblTownLoginklant"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/txtGemeenteKlant"
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"/>
+
+
+        <TextView
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:text="@string/lblNumberLoginklant"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/txtNrKlant"
+            android:layout_width="@dimen/edittext_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
             android:width="200dp" />
+
 
         <Button
             android:id="@+id/btnFragKeuze"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
-            android:text="@string/btnNextLoginklant"
-            android:textSize="20dp" />
+            android:text="@string/btnNextLoginklant" />
 
     </LinearLayout>
 </ScrollView>

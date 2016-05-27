@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +28,11 @@ public class EindFragment extends Fragment {
     private View view;
     private OnFragmentInteractionListener mListener;
     private TextView oplossing;
-    Button wijziging;
-    Button verzending;
-    Button kiesReeks;
+    private ImageView wijziging;
+    private Button verzending;
+    private Button kiesReeks;
+    private TextView txtControleNaam;
+    private TextView txtControleEmail;
     private final String PREFS_NAME = "COM.BOSTOEN.BE";
 
     public void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,17 @@ public class EindFragment extends Fragment {
 
         view = inflater.inflate(R.layout.eindscherm_layout, container, false);
 
+
         //elementen van scherm in code ophalen
         oplossing = (TextView) view.findViewById(R.id.txtResultaat);
-        wijziging = (Button) view.findViewById(R.id.btnWijzigen);
+        wijziging = (ImageView) view.findViewById(R.id.btnWijzigen);
         verzending = (Button) view.findViewById(R.id.btnVerzenden);
         kiesReeks = (Button) view.findViewById(R.id.btnKiesReeks);
+        txtControleNaam = (TextView) view.findViewById(R.id.txtControleNaam);
+        txtControleEmail = (TextView) view.findViewById(R.id.txtControleEmail);
 
+        txtControleNaam.setText("Naam: " + mListener.getNaam() );
+        txtControleEmail.setText("Email: " + mListener.getEmail());
         //laats beantwoorde vraag resetten
         mListener.setLastVraag(null);
 
@@ -60,7 +68,15 @@ public class EindFragment extends Fragment {
             Dossier huidig = mListener.getDossier(lastDossier);
             if(huidig!=null)
             {
-                tekst.append(huidig.getNaam()+": \n");
+                if(huidig.getNaam()!=null)
+                {
+
+                    tekst.append(huidig.getNaam()+": \n");
+                }
+                else {
+
+                    Log.d("DossierNaam","null");
+                }
             }
         }
 
@@ -85,6 +101,7 @@ public class EindFragment extends Fragment {
                             //conroleren of er bij de geselecteerde AntwoordOptie een oplossing hoort
                             if (antwoordOptie.getOplossing() != null && !antwoordOptie.getOplossing().equals("")) {
                                 //oplossingtekst toevoegen aan StringBuilder
+
                                 tekst.append(antwoordOptie.getOplossing() + "\n");
                                 Log.d("Oplossing", antwoordOptie.getOplossing());
                             }
@@ -98,10 +115,14 @@ public class EindFragment extends Fragment {
 
 
         Log.d("Oplossing", tekst.toString());
-
-        //oplossingen van vorige dossiers en van het laatste dossier op het scherm weergeven
-        oplossing.setText(mListener.getOplossing()+ "\n" + tekst.toString());
-
+        if(mListener.getOplossing() != null) {
+            //oplossingen van vorige dossiers en van het laatste dossier op het scherm weergeven
+            oplossing.setText(mListener.getOplossing() + "\n" + tekst.toString());
+        }
+        else{
+            //bij de eerste oplossing zijn er nog geen voorgaande antwoorden
+            oplossing.setText(tekst.toString());
+        }
         //naar instelliingenscherm
         wijziging.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +169,7 @@ public class EindFragment extends Fragment {
                 {
                     //oplossingtekst van laatste dossier toevoegen
                     mListener.setOplossing(tekst.toString());
+
                 }
 
                 //laatst ingevulde dossier op null zetten
@@ -172,38 +194,13 @@ public class EindFragment extends Fragment {
         emailIntent.setData(Uri.parse("mailto:"));
 
         emailIntent.setType("text/plain");
-/*
-        List<ResolveInfo> pkgAppsList = getActivity().getPackageManager().queryIntentActivities( emailIntent, PackageManager.MATCH_DEFAULT_ONLY | PackageManager.GET_RESOLVED_FILTER);
 
-
-
-//Cycle through list of apps in list and select the one that matches GMail's package name
-
-        for (ResolveInfo resolveInfo : pkgAppsList) {
-
-            String packageName = resolveInfo.activityInfo.packageName;
-
-            String className = "";
-
-            if(packageName.equals("com.google.android.gm")) {
-
-                className = resolveInfo.activityInfo.name;
-
-                emailIntent.setClassName(packageName, className);
-
-            }
-
-        }
-
-*/
 
         //Lijst van apps ophalen die aan bovenstaande criteria voldoen
 
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, mListener.getEmail());
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{mListener.getEmail()});
 
-        //emailIntent.putExtra(Intent.EXTRA_CC, "EMAIL ONTVANGER");
 
-        //emailIntent.putExtra(Intent.EXTRA_BCC, "EMAIL ONTVANGER");
 
         //Ophalen info klant
 
@@ -214,10 +211,66 @@ public class EindFragment extends Fragment {
 
         String vn = plaats.getVoornaam();
         String fn = plaats.getNaam();
-        String plts = plaats.getStraat() + " " + plaats.getNummer() + " " + plaats.getPostcode() + " " + plaats.getGemeente();
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Enquete" + fn + " " + vn);
+        String en = "";
+        if(plaats.isEigenaar()){
+            en = "(Eigenaar)";
+        }
 
-        emailIntent.putExtra(Intent.EXTRA_TEXT, plts + "\n" + oplossing.getText());
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Enquete" + fn + " " + vn + " " + en);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Beste " + mListener.getNaam() + ",\n\n");
+        sb.append("U heeft de woning in " + plaats.getStraat() + " " + plaats.getNummer() + " " + plaats.getPostcode() + " " + plaats.getGemeente() + " bezocht met de Ren2BEN-app.\n\n");
+        sb.append("Dit onderzoek gebeurde in opdracht van " + plaats.getVoornaam() + " " + plaats.getNaam() + ", de ");
+        if(plaats.isEigenaar())
+        {
+            sb.append("eigenaar");
+        }
+        else {
+            sb.append("huurder");
+        }
+        sb.append(" van dit pand\n");
+
+        Log.d("lastplaats id", mListener.getLastPlaats().toString());
+        ArrayList<Dossier> dossiers = mListener.getDossiersPlaats(mListener.getLastPlaats());
+        if(dossiers!=null){
+            for (Dossier dossier :dossiers)
+            {
+                sb.append("\nVoor het bouwonderdeel "+dossier.getNaam()+ " raden we u volgende oplossing aan:");
+                sb.append("\n");
+                Log.d("dossier",dossier.getNaam());
+                //alle VragenDossier die bij het huidig dossier horen ophalen ( hierin worden de antwoorden van de gebruiker opgeslagen)
+                ArrayList<VragenDossier> vragenDossiers = mListener.getVragenDossiers(dossier.getId());
+                //String met oplossingen halen van het laatste Dossier
+                if (vragenDossiers != null) {
+
+                    for (VragenDossier vragenDossier : vragenDossiers) {
+                        //alle antwoorden ophalen die horen bij de beantwoorde vraag van het VragenDossier
+                        ArrayList<AntwoordOptie> antwoordOpties = mListener.getAntwoorden(vragenDossier.getAntwoordOptie());
+                        Log.d("Antwoordopties", new Integer(antwoordOpties.size()).toString());
+
+
+                        for (AntwoordOptie antwoordOptie : antwoordOpties) {
+
+                            //indien de opgeslagen tekst in VragenDossier gelijk is aan de tekst van de Antwoordoptie heeft de gebruiker deze AntwoordOptie gekozen
+                            if (antwoordOptie.getAntwoordTekst().equals(vragenDossier.getAntwoordTekst())) {
+                                //conroleren of er bij de geselecteerde AntwoordOptie een oplossing hoort
+                                if (antwoordOptie.getOplossing() != null && !antwoordOptie.getOplossing().equals("")) {
+                                    //oplossingtekst toevoegen aan StringBuilder
+
+                                    sb.append(antwoordOptie.getOplossing() + "\n");
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        sb.append("\nBedankt voor uw vertrouwen in de Ren2BEN-app!\nWe hopen u snel terug van dienst te zijn.\n\nTeam Ren2BEN");
+
+        emailIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
 
 
         try {
@@ -263,6 +316,8 @@ public class EindFragment extends Fragment {
         startActivity(intent);
     }
 
+
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -281,9 +336,11 @@ public class EindFragment extends Fragment {
         void goToInstellingen(Integer lastDossier);
         void goToKeuzeFragment();
         void setOplossing ( String oplossing);
+        ArrayList<Dossier> getDossiersPlaats(int plaatsid);
         Dossier getDossier(int id);
         String getOplossing();
         String getEmail();
+        String getNaam();
 
     }
 }

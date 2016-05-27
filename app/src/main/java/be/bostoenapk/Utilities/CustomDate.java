@@ -6,9 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class CustomDate extends Date {
     private Date date;
     private SimpleDateFormat formatter;

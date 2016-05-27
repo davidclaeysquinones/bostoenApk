@@ -7,14 +7,15 @@
     <string name="private_key">81d5282cffbdc8404ca7c85cd4bdcdd5</string>
     <string name="public_key">4fd49301221641528079dd57df2db4e6</string>
     <string name="antwoordAntwoordoptie">antwoordtekst</string>
-    <string name="btnChangeEindscherm">Settings</string>
-    <string name="btnChooseListEindscherm">Nieuwe reeks</string>
-    <string name="btnSendEindscherm">Verzenden</string>
-    <string name="lblResultEindscherm">RESULTAAT blblblblbllblaqlablallablbalablbalbalablbalbalbalblalbalablbal</string>
+    <string name="btnChangeEindscherm">Instellingen</string>
+    <string name="btnChooseListEindscherm">Volgende \n reeks</string>
+    <string name="btnChooseListEindschermLong">Volgende reeks</string>
+    <string name="btnSendEindscherm">Afronden en verzenden</string>
+    <string name="lblResultEindscherm">Resulataat</string>
     <string name="lblWelcomeHome">Welkom</string>
-    <string name="btnStartHome">Start Enquete</string>
+    <string name="btnStartHome">Start enquete</string>
     <string name="btnSettingsHome">Instellingen</string>
-    <string name="btnAboutHome">About RenBEN</string>
+    <string name="btnAboutHome">About Ren2BEN</string>
     <string name="btnDoneInstellingen1">Gereed</string>
     <string name="lblFirstNameInstellingen1">Voornaam:</string>
     <string name="lblNameInstellingen1">Naam:</string>
@@ -44,19 +45,22 @@
     <string name="btnNextLoginklant">Volgende</string>
     <string name="lblListnameReeks">reeksnaam</string>
     <string name="lblQuestionVragenscherm">Vraag Enquete</string>
-    <string name="lblTipVragenscherm">TIP: een tip hier</string>
+    <string name="lblTipVragenscherm">Tip: een tip hier</string>
     <string name="btnOkVragenscherm">OK</string>
+    <string name="btnTerug">Terug</string>
+    <string name="btnKiesReeks">Kies Reeks</string>
     <string name="PREFS_NAME">COM.BOSTOEN.BE</string>
-    <string name="txtNaam1">• Jirne Van Camp</string>
-    <string name="txtNaam2">• Ruben Descheemaecker</string>
-    <string name="txtNaam">• Marnix Hauspie</string>
-    <string name="txtNaam47">• David Claeys</string>
-    <string name="txtNaam5">• Anthony Broeckaert</string>
-    <string name="txtNaam6">• Laurens Plumet</string>
-    <string name="txtNaam7">• Anne Goidts</string>
-    <string name="txtNaam8">• Steve Wittouck</string>
-    <string name="txtNaam9">• Christophe Debrbrander</string>
-    <string name="txtNaam10">• Arne Vandenbussche</string>
     <string name="txtTitle">Project RenBEN</string>
-    <string name="txtThanksTO">Met dank aan</string>
+    <string name="txtThanksTO">Met dank aan:</string>
+    <string name="txtNamenVives">Jirne Van Camp, Ruben Descheemaecker, Marnix Hauspie, David Claeys, Anthony Broeckaert en Laurens Plumet</string>
+    <string name="txtNamenBostoen">Anne Goidts, Steve Wittouck, Christophe Debrabander en Dirk Vos</string>
+    <string name="txtAboutOverRenBen">Deze app werd ontwikkeld binnen het RenBEN-project.
+“RenBEN” staat voor “Renovatie tot een Bijna-Energie-Neutrale (rij)woningen in private huur”. Het RenBEN-project is een proeftuinproject en wordt door de Vlaamse Overheid gesteund via VLAIO (Agentschap Innoveren en Ondernemen).
+Het doel van het project is om via een geïntegreerde aanpak tools te ontwerpen om rijwoningen betaalbaar BEN (Bijna Energie Neutraal) te renoveren en deze tool te testen en bijsturen in 30 exemplarische renovaties.
+Voor deze 30 renovaties binnen het project RenBEN geven we extra ondersteuning en begeleiding om duurzame renovatiemaatregelen naar BEN te promoten.
+De app Ren2BEN helpt u om een oplossing te zoeken voor een welbepaald onderdeel van de te behandelen bestaande woning om deze woning uiteindelijk te renoveren naar BEN. Zo kan u op basis van deze resultaten een gepast technisch en energetisch advies te geven aan de eigenaar of huurder van de woning.
+</string>
+    <string name="historiek">Historiek</string>
+    <string name="historiek_waarschuwing">Door een item aan te klikken word de enquête tot deze vraag teruggedraaid en zal u vanaf dit punt herbeginnen.</string>
+
 </resources>

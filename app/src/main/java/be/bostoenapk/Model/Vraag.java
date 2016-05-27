@@ -4,9 +4,7 @@ import android.graphics.Bitmap;
 
 import be.bostoenapk.Utilities.CustomDate;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class Vraag {
     //Eigenschappen van de vraag.
     private Integer id;

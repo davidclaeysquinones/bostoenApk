@@ -1,8 +1,6 @@
 package be.bostoenapk.Model;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class VragenDossier {
     private String  vraagTekst;
     private String  antwoordTekst;

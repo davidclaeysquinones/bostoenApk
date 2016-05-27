@@ -20,15 +20,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="325dp"/>
+                android:layout_marginStart="325dp"/>
 
             <EditText
                 android:id="@+id/txtVoornaamAdviseur"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width"
                 android:layout_height="wrap_content"
-                android:width="250dp"
+                android:inputType="text"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="30dp"/>
+                android:layout_marginStart="30dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,14 +40,14 @@
                 android:text="Naam:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="325dp"/>
+                android:layout_marginStart="325dp"/>
 
             <EditText
                 android:id="@+id/txtNaamAdviseur"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width"
                 android:layout_height="wrap_content"
-                android:width="250dp"
-                android:layout_marginLeft="81dp"/>
+                android:inputType="text"
+                android:layout_marginStart="81dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,12 +64,11 @@
 
             <EditText
                 android:id="@+id/txtEmailAdviseur"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/edittext_width"
                 android:layout_height="wrap_content"
-                android:width="250dp"
                 android:layout_marginBottom="30dp"
-                android:layout_marginLeft="88dp"/>
-
+                android:inputType="textEmailAddress"
+                android:layout_marginStart="88dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -81,8 +80,8 @@
         <Button
             android:id="@+id/btnFragKlant"
             android:text="Bevestig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"/>
 

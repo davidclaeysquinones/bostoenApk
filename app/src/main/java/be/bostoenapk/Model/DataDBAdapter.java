@@ -16,9 +16,7 @@ import java.util.ArrayList;
 
 import be.bostoenapk.Utilities.CustomDate;
 
-/**
- * Created by david on 2/05/2016.
- */
+
 public class DataDBAdapter {
     /**naam van de database*/
     private static final String DATABASE_NAME = "BOSTOEN_DATABASE.db";
@@ -718,7 +716,6 @@ public class DataDBAdapter {
 
 
 
-
     /**
      * Voegt de gewenste plaats toe aan de database
      * @param plaats
@@ -989,6 +986,12 @@ public class DataDBAdapter {
         return mDb.query(DOSSIER_TABLE, DOSSIER_FIELDS,DOSSIER_ID+"=?",selectionArgs, null, null, null, null);
     }
 
+    public Cursor getDossiersPlaats(int plaatsid)
+    {
+        String[] selectionArgs = {String.valueOf(plaatsid)};
+        //eerste null is de 'where', dan 'selectionArgs' 'GroupBy' 'Having' 'orderBy' en 'limit'
+        return mDb.query(DOSSIER_TABLE, DOSSIER_FIELDS,DOSSIER_PLAATS_ID+"=?",selectionArgs, null, null, null, null);
+    }
     /**
      *
      * @param cursor wordt verkregen door getDossier() op te roepen
@@ -1012,6 +1015,26 @@ public class DataDBAdapter {
             return null;
         }
 
+    }
+
+    public ArrayList<Dossier> getDossiersFromsCursor(Cursor cursor) throws ParseException {
+        if (cursor.getCount() > 0) {
+            ArrayList<Dossier> output = new ArrayList<>();
+
+            while (cursor.moveToNext()) {
+                Dossier dossier = new Dossier();
+                dossier.setId(cursor.getInt(cursor.getColumnIndex(DOSSIER_ID)));
+                dossier.setNaam(cursor.getString(cursor.getColumnIndex(DOSSIER_NAAM)));
+                dossier.setPlaatsId(cursor.getInt(cursor.getColumnIndex(DOSSIER_PLAATS_ID)));
+                dossier.setDatum(new CustomDate(cursor.getString(cursor.getColumnIndex(DOSSIER_DATUM))));
+
+                output.add(dossier);
+                Log.d("dossiernaam db",dossier.getNaam());
+            }
+            return output;
+        } else {
+            return null;
+        }
     }
 
     /**

@@ -13,18 +13,21 @@ import android.widget.EditText;
 
 import be.bostoenapk.Model.Plaats;
 import be.bostoenapk.R;
+import be.bostoenapk.Utilities.Validatie;
 
 public class LoginKlantFragment extends Fragment {
     private View view;
     private OnFragmentInteractionListener mListener;
     private final String TAG = LoginKlantFragment.class.getSimpleName();
+    private Validatie val;
 
-    EditText naam;
-    EditText voornaam;
-    EditText straat;
-    EditText gemeente;
-    EditText nummer;
-    EditText postcode;
+    private EditText naam;
+    private EditText voornaam;
+    private EditText straat;
+    private EditText gemeente;
+    private EditText nummer;
+    private EditText postcode;
+    private CheckBox isEigenaar;
 
 
 
@@ -36,14 +39,14 @@ public class LoginKlantFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.instellingen_2_layout, container, false);
         Button volgende = (Button)view.findViewById(R.id.btnFragKeuze);
-        final CheckBox isEigenaar = (CheckBox)view.findViewById(R.id.klantIsEigenaar);
+        isEigenaar = (CheckBox)view.findViewById(R.id.klantIsEigenaar);
         naam = (EditText)view.findViewById(R.id.txtNaamKlant);
         voornaam = (EditText)view.findViewById(R.id.txtVoornaamKlant);
         straat = (EditText)view.findViewById(R.id.txtStraatKlant);
         gemeente = (EditText)view.findViewById(R.id.txtGemeenteKlant);
         nummer = (EditText)view.findViewById(R.id.txtNrKlant);
         postcode = (EditText)view.findViewById(R.id.txtPostcodeKlant);
-
+        val = new Validatie();
         //kijken of er tijdens de uitvoering van de app al een plaats werd toegevoegd
         if(mListener.getLastPlaats()!=null)
         {
@@ -76,12 +79,12 @@ public class LoginKlantFragment extends Fragment {
                 if(controleerVelden()) {
                     Plaats plaats =new Plaats();
                     plaats.setIsEigenaar(isEigenaar.isChecked());
-                    plaats.setNaam(naam.getText().toString());
-                    plaats.setVoornaam(voornaam.getText().toString());
-                    plaats.setStraat(straat.getText().toString());
-                    plaats.setGemeente(gemeente.getText().toString());
-                    plaats.setNummer(new Integer(nummer.getText().toString()));
-                    plaats.setPostcode(new Integer(postcode.getText().toString()));
+                    plaats.setNaam(naam.getText().toString().trim());
+                    plaats.setVoornaam(voornaam.getText().toString().trim());
+                    plaats.setStraat(straat.getText().toString().trim());
+                    plaats.setGemeente(gemeente.getText().toString().trim());
+                    plaats.setNummer(Integer.valueOf(nummer.getText().toString().trim()));
+                    plaats.setPostcode(Integer.valueOf(postcode.getText().toString().trim()));
                     if(mListener.getLastPlaats()==null)
                     {
                         mListener.addPlaats(plaats);
@@ -100,75 +103,46 @@ public class LoginKlantFragment extends Fragment {
     }
 
     public boolean controleerVelden() {
-        boolean valid = true;
+        boolean nm = true;
+        boolean vnm = true;
+        boolean str = true;
+        boolean gem = true;
+        boolean nmr = true;
+        boolean pst = true;
 
-
-        if(!isValidText(50, naam.getText().toString())) {
+        if(!val.valString(naam.getText().toString().trim(), 51, -1)) {
             naam.setError("Gelieve een correcte naam in te geven (max. 50 karakters)");
-            valid = false;
+            nm = false;
         } else {
             naam.setError(null);
-            valid = valid ==true;
         }
-        if (!isValidText(50, voornaam.getText().toString())) {
+        if (!val.valString(voornaam.getText().toString().trim(), 51, -1)) {
             voornaam.setError("Gelieve een correcte voornaam in te geven (max. 50 karakters)");
-            valid = false;
-        } else {
-            voornaam.setError(null);
-            valid = valid ==true;
-        }
+            vnm = false;
+        } else voornaam.setError(null);
 
-        if (!isValidText(100, straat.getText().toString())) {
+        if (!val.valString(straat.getText().toString().trim(), 101, -1)) {
             straat.setError("Gelieve een correcte straat in te geven (max. 100 karakters)");
-            valid = false;
-        } else {
-            straat.setError(null);
-            valid = valid ==true;
-        }
+            str = false;
+        } else straat.setError(null);
 
-        if (!isValidText(50, gemeente.getText().toString())) {
+        if (!val.valString(gemeente.getText().toString().trim(), 51, -1)) {
             gemeente.setError("Gelieve een correcte gemeente in te geven (max. 50 karakters)");
-            return false;
-        } else {
-            gemeente.setError(null);
-            valid = valid == true;
-        }
+            gem = false;
+        } else gemeente.setError(null);
 
-
-        if (nummer.getText().toString().equals("") ||
-                nummer.getText().toString().equals(null) ||
-                nummer.getText().toString().length() > 5 ||
-                !isNummer(nummer.getText().toString())) {
-            nummer.setError("Gelieve een correct nummer in te geven (max. 4 cijfers en/of letters)");
-            return false;
+        if (!val.valNumber(nummer.getText().toString().trim(), 5, -1)) {
+            nummer.setError("Gelieve een correct nummer in te geven (max. 4 cijfers)");
+            nmr = false;
         } else nummer.setError(null);
 
+        if (!val.valNumberExactLength(postcode.getText().toString().trim(), 4)) {
+            postcode.setError("Gelieve een correcte postcode in te geven (4 cijfers)");
+            pst = false;
+        } else postcode.setError(null);
 
-        if (!isValidText(5, postcode.getText().toString()) ||
-                !isNummer(postcode.getText().toString())) {
-            postcode.setError("Gelieve een correcte postcode in te geven (max. 4 cijfers)");
-            valid = false;
-        } else {
-            postcode.setError(null);
-            valid = valid ==true;
-        }
-
-        return valid;
-    }
-
-    protected boolean isNummer(String nummer) {
-        try {
-            Integer.parseInt(nummer);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    protected boolean isValidText(int maxLength, String woord) {
-        if(woord==null || woord.equals("") || woord.length() > maxLength ) {
-            return false;
-        } else return true;
+        if(nm && vnm && str && gem && nmr && pst) return true;
+        else return false;
     }
 
     @Override
@@ -181,7 +155,7 @@ public class LoginKlantFragment extends Fragment {
         {
 
             mListener = (OnFragmentInteractionListener)activity;
-
+            
         }
         else {
             throw new RuntimeException(activity.toString()
