@@ -46,6 +46,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAdviseurFra
         menu.setDisplayUseLogoEnabled(true);
         sharedpreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
+
+
          //Bij de eerste launch van de app wordt de Adviseur gegevens gevraagd
         if (savedInstanceState == null) {
             if(!sharedpreferences.contains("Voornaam"))
