@@ -96,7 +96,8 @@
                     android:layout_width="@dimen/button_width_long"
                     android:layout_height="@dimen/button_height"
                     android:text="@string/btnSendEindscherm"
-                    android:id="@+id/btnVerzenden"/>
+                    android:id="@+id/btnVerzenden"
+                    android:layout_marginTop="15dp" />
             </LinearLayout>
             </LinearLayout>
 

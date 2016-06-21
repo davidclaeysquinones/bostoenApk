@@ -1,5 +1,6 @@
 package be.bostoenapk.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -55,10 +56,9 @@ public class PlaatsHistoriekFragment extends Fragment {
         ListView plaatsenlijst = (ListView) view.findViewById(R.id.plaatsen);
         TextView empty = (TextView) view.findViewById(R.id.plaatsHisotiekEmpty);
 
+        if(mListener.getPlaatsen() != null){
+            ArrayList<Plaats> plaatsen = mListener.getPlaatsen();
 
-        ArrayList<Plaats> plaatsen = mListener.getPlaatsen();
-        if(plaatsen!=null)
-        {
             empty.setVisibility(View.GONE);
             plaatsenlijst.setAdapter(new Plaats.PlaatsAdapter(getActivity().getApplicationContext(),plaatsen));
             plaatsenlijst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,7 +82,7 @@ public class PlaatsHistoriekFragment extends Fragment {
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;

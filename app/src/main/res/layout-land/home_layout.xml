@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -11,6 +12,7 @@
             android:scaleType="fitEnd"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,42 +24,60 @@
         android:layout_marginBottom="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_below="@id/txtWelkom"
-    android:gravity="center_horizontal|center_vertical"
-    android:weightSum="1">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Enquete"
-        android:id="@+id/btnStart" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instellingen"
-        android:id="@+id/btnSettings"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_weight="0.05" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
 
-</LinearLayout>
-
-    <Button
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/plaatsButton"
-        android:text="@string/plaats_historiek"
-        android:layout_centerHorizontal="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About RenBEN"
-        android:id="@+id/btnAbout"
-        android:layout_marginBottom="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:orientation="horizontal"
+        android:layout_below="@id/txtWelkom"
+        android:gravity="center_horizontal|center_vertical"
+        android:weightSum="1">
+        <Button
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:text="Start Enquete"
+            android:id="@+id/btnStart" />
+
+        <Button
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:text="Instellingen"
+            android:id="@+id/btnSettings"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="0.05" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:id="@+id/plaatsButton"
+                android:text="@string/plaats_historiek"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:text="About RenBEN"
+                android:id="@+id/btnAbout"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

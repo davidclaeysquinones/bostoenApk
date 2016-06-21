@@ -60,26 +60,26 @@
     android:layout_marginTop="50dp"
     android:layout_below="@id/txtResultaat"
     android:gravity="center_horizontal"
-    android:orientation="horizontal">
+    android:orientation="vertical">
     <Button
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height_extended"
         android:text="@string/btnChooseListEindscherm"
-        android:layout_marginEnd="15dp"
         android:id="@+id/btnKiesReeks" />
 
     <Button
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height_extended"
         android:id="@+id/btnafronden"
-        android:text="@string/btnAfronden"/>
+        android:text="@string/btnAfronden"
+        android:layout_marginTop="25dp" />
     <Button
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height_extended"
         android:text="@string/btnSendEindscherm"
-        android:layout_marginStart="15dp"
         android:gravity="center"
-        android:id="@+id/btnVerzenden"/>
+        android:id="@+id/btnVerzenden"
+        android:layout_marginTop="25dp" />
 </LinearLayout>
     </LinearLayout>
 </ScrollView>
